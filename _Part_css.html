@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/Gauth/AppData/Local/Temp/_MarkdownMonster_Preview.html -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--<base href="file:///C:\Users\Gauth\Desktop\markdown\md\">--><base href=".">
+  
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="./_Part_css_files/font-awesome.min.css" rel="stylesheet">
+
+  <link href="./_Part_css_files/Theme.css" rel="stylesheet">
+
+  <script src="./_Part_css_files/jquery.min.js.téléchargement"></script>
+  <link href="./_Part_css_files/twilight.css" rel="stylesheet">
+  <script src="./_Part_css_files/highlight.pack.js.téléchargement"></script>
+  <script src="./_Part_css_files/preview.js.téléchargement" id="PreviewScript"></script>
+  
+</head>
+<body>
+<div id="MainContent">
+    <!-- Markdown Monster Content -->
+    <h2 id="partie-css">Partie CSS</h2>
+<h2 id="avant-propos-">Avant propos :</h2>
+<blockquote>
+<p>CSS3 | Bootstrap</p>
+</blockquote>
+<p>Pour le fil rouge j'ai utiliser principalement <strong>Bootstrap</strong>, un frameworks CSS assez connue dans le développement pour sa simplicitée.</p>
+<p>Je me sert également de plusieurs feuilles de styles afin de complétée la mise en page au besoin.</p>
+<p><img src="./_Part_css_files/snCSS.png" alt="Vue d&#39;enssemble des règles CSS"></p>
+<p>Je laisse parfois quelques commentaires dans le but de me rappelais les tâches à effectuée. Ces commentaires ne font partie d'aucune norme, le =0 est un raccourcie un peu comme une ancre, cela me permet de parcourir la feuille de style avec <strong>Ctrl + F</strong>.</p>
+<p>Habituellement je n'aime pas importée de cette façon les règles mais à mesure où le site à grandit, il me fallais trouver un moyen de morcelé les règles CSS.</p>
+<p>Cotée ressources ce n'est pas top ce genre de méthode.</p>
+<h3 id="snippet-intéressant">Snippet intéressant</h3>
+<p>Etant donnée le nombre de ligne de CSS (un peu plus de 1000) j'ai selectionner que les morceaux interessant.</p>
+<h3 id="le-cas-des-variables">Le cas des variables</h3>
+<pre><code class="language-css hljs"><span class="hljs-selector-class">.fontAwesome</span> {
+	<span class="hljs-attribute">font-family</span>: Helvetica, <span class="hljs-string">'FontAwesome'</span>, sans-serif;}
+
+<span class="hljs-selector-class">.root</span>{
+<span class="hljs-comment">/* Déclaration des variables */</span>
+	<span class="hljs-attribute">--new-c-primary</span>: navy;
+
+	<span class="hljs-attribute">--new-c-third</span>: <span class="hljs-number">#4d4d4d</span>; <span class="hljs-comment">/*gris sombre*/</span>
+	<span class="hljs-attribute">--new-c-four</span>: <span class="hljs-number">#ff8600</span>; <span class="hljs-comment">/*orange vif*/</span>
+	<span class="hljs-attribute">--new-b-second</span>: <span class="hljs-number">#e6e6e6</span>; <span class="hljs-comment">/*gray */</span>
+
+	<span class="hljs-attribute">--c-grey</span>: <span class="hljs-number">#e6e6e6</span>;
+	<span class="hljs-attribute">--c-dark</span>:<span class="hljs-number">#303030</span>;
+	<span class="hljs-attribute">--c-orange</span>:<span class="hljs-number">#ff5a18</span>;
+	<span class="hljs-attribute">--c-orangeII</span>: <span class="hljs-number">#b55500</span>;
+	<span class="hljs-attribute">--c-blue</span>:navy;
+}
+<span class="hljs-comment">/* Un cas d'utilisation */</span>
+<span class="hljs-selector-class">.wrap-detail</span> <span class="hljs-selector-class">.titre-detail</span> <span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span>{
+	<span class="hljs-attribute">color</span>:<span class="hljs-built_in">var</span>(--c-orangeII);
+	<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">500</span>;
+	<span class="hljs-attribute">transform</span>:<span class="hljs-built_in">scale</span>(1.05);
+	<span class="hljs-attribute">text-shadow</span>:-<span class="hljs-number">2px</span> <span class="hljs-number">0</span> <span class="hljs-number">1px</span> black;
+}
+
+</code></pre>
+<p>Ici j'ai définit les couleurs et leurs nuances selon la charte graphique réclâmé, bien sûr les couleurs élémentaire comme le noir ou le blanc inutile de les préçisée mais, pour le reste s'appuyée ces variable me semblé une bonne idée.</p>
+<h3 id="lemploi-des-selecteurs">L'emploi des selecteurs</h3>
+<pre><code class="language-css hljs"><span class="hljs-comment">/* Exemple 1 */</span>
+<span class="hljs-selector-tag">nav</span><span class="hljs-selector-class">.row</span> &gt; <span class="hljs-selector-tag">ul</span><span class="hljs-selector-pseudo">:nth-child(1)</span> &gt; <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:nth-child(3)</span> &gt; <span class="hljs-selector-tag">span</span>, <span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.text-center</span> {
+	<span class="hljs-attribute">color</span>:white;
+	<span class="hljs-attribute">font-size</span>:<span class="hljs-number">2rem</span>;
+	<span class="hljs-attribute">font-weight</span>:<span class="hljs-number">500</span>;
+}
+
+<span class="hljs-comment">/* Exemple 2 */</span>
+<span class="hljs-selector-class">.wrap-produits</span> <span class="hljs-selector-class">.card</span><span class="hljs-selector-pseudo">:hover</span> <span class="hljs-selector-class">.face</span><span class="hljs-selector-class">.revers2</span> {
+	<span class="hljs-attribute">transform</span>:<span class="hljs-built_in">translateY</span>(0);
+	<span class="hljs-attribute">border-radius</span>:<span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* Exemple 3 */</span>
+
+<span class="hljs-selector-tag">section</span> <span class="hljs-selector-class">.titre-assistance</span><span class="hljs-selector-pseudo">:before</span> {
+	<span class="hljs-attribute">content</span>:<span class="hljs-string">'♫'</span>;
+	<span class="hljs-attribute">pointer-events</span>:none;
+	<span class="hljs-attribute">font-size</span>:<span class="hljs-built_in">calc</span>(100% + .75rem);
+	<span class="hljs-attribute">transform</span>:<span class="hljs-built_in">skew</span>(-8deg);}
+
+</code></pre>
+<h3 id="exemple-i">Exemple I</h3>
+<p>Pour le premier exemple se qui est intéressant c'est le ciblage des selecteurs, ici je parcours le parent nav pour trouver ul, ensuite je demande de ciblée simplement la première balise ul ceci peu se faire de plusieurs façon là j'utilise une pseudo classe, une fois le ul trouver, je cible de la même façon son enfant en demandant son troisième élément. Enfin de ce troisième enfant je cherche sa balise span.</p>
+<p>La virgule est une séparation cela permet d'appliquée d'autres selecteurs qui ont besoin de ces même règles.</p>
+<p>span.text-center n'est pas un selecteur à double composition, span.text-center ne fais qu'un, de cette façon l'agent d'utilisateur chercheras toutes les balises possèdant au moins un selecteur text-center.</p>
+<p>Conclusion: span .text-center et span.text-center sont différents, l'espace influe sur le résultat.</p>
+<h3 id="exemple-ii">Exemple II</h3>
+<p>L' exemple montre qu'il est possible d'influencée un enfant en fonction de son parent, .card:hover indique que lorsque le curseur passe sur la balise avec le selecteur .card cela change les règles définit sur son enfant. l'enfant c'est face.revers2.</p>
+<h3 id="exemple-iii">Exemple III</h3>
+<p>Ici on vois non pas une pseudo-classe mais un pseudo-élément, les pseudo-élément génére un élément ne faisant pas partie du flux / ou du DOM, cette balise fantôme est modifiable via le CSS et possède les règles de ces parents, ainsi ont peu définir une taille de police. Ces élément ont besoin d'un contenue pour existée.</p>
+<h2 id="boostrap">Boostrap</h2>
+<p>Bootstrap c'est un <strong>Framework</strong> Frontent type Composant, en gros se sont des lignes de selecteurs définit avec des règles CSS. Boostrap est composée de deux partie: l'une est faite de CSS, l'autre de Jquery (une librairy CSS et JavaScript).</p>
+<p><strong>Boostrap</strong> peut être utilisée de deux façon: soit directement à l'aide d'un serveur hébergeur aussi appelée CDN. Soit on peu le télécharger et le déposer dans un dossier de notre site, il faudras alors spécifier le path dans l'en-tête HTML pour s'en servir.</p>
+<h3 id="la-grille">La Grille</h3>
+<p><strong>Boostrap</strong> possède sa propre grille CSS, sa permet de composée un site de façon harmonieuse et responsive aux possibles, cette grille suporte 5 points fixes (breakpoints) :</p>
+<p><em>tableau en px</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Points break</th>
+<th style="text-align: center;">min-width</th>
+<th style="text-align: center;">max-width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">xs</td>
+<td style="text-align: center;">inhérit</td>
+<td style="text-align: center;">575.9</td>
+</tr>
+<tr>
+<td style="text-align: center;">sm</td>
+<td style="text-align: center;">576</td>
+<td style="text-align: center;">767.9</td>
+</tr>
+<tr>
+<td style="text-align: center;">md</td>
+<td style="text-align: center;">768</td>
+<td style="text-align: center;">991.9</td>
+</tr>
+<tr>
+<td style="text-align: center;">lg</td>
+<td style="text-align: center;">992</td>
+<td style="text-align: center;">1199.9</td>
+</tr>
+<tr>
+<td style="text-align: center;">xl</td>
+<td style="text-align: center;">1199</td>
+<td style="text-align: center;">inhérit</td>
+</tr>
+</tbody>
+</table>
+<p>inhérit pour héritage, <strong>Bootstrap</strong> se baseras sur les régles établies sur le conteneur. Pour évitée des marges de 15km ont peu faire ceci et forcée le conteneur à utilisée toute la longueur exploitable:</p>
+<pre><code class="language-css hljs"><span class="hljs-selector-class">.container</span>{
+	<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;
+	<span class="hljs-attribute">min-width</span>:<span class="hljs-number">100%</span>;
+}
+
+</code></pre>
+<h3 id="se-servir-des-breakpoints-sur-le-dom">Se servir des breakpoints sur le DOM</h3>
+<pre><code class="language-html hljs xml">   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group col-sm-4"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"POST"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-sm-12 pl-2"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"newsletter"</span>&gt;</span>Recevez&amp;nbsp;
+		    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"c-custom"</span>&gt;</span>nos ofres exclusives<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row ml-1 form-group "</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-auto col-sm-12 col-md-12 col-lg-6 mr-1 form-control"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Entre votre adresse mail"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"newsletter"</span>&gt;</span>
+
+			<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"mt-sm-1 mt-lg-0 col-auto col-sm-12 col-md-6 col-lg-4 btn btn-custom"</span>&gt;</span>S'abonnez<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>		
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">hr</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-sm-none d-sm-block"</span>&gt;</span>
+
+</code></pre>
+<h5 id="le-comportement-des-selecteurs">Le comportement des selecteurs</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Le selecteur</th>
+<th style="text-align: center;">Son comportement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">row</td>
+<td style="text-align: center;">ajoute une rangée, prend toute la largeur définit par le conteneur</td>
+</tr>
+<tr>
+<td style="text-align: left;">form-group</td>
+<td style="text-align: center;">composant propre à Boostrap pour la mise en page des formulaires</td>
+</tr>
+<tr>
+<td style="text-align: left;">form-control</td>
+<td style="text-align: center;">composant propre à Boostrap pour la mise en page des input</td>
+</tr>
+<tr>
+<td style="text-align: left;">btn</td>
+<td style="text-align: center;">composant propre à Boostrap pour la mise en page des bouttons</td>
+</tr>
+<tr>
+<td style="text-align: left;">btn-custom</td>
+<td style="text-align: center;">équivaut btn-muted, button neutre et modifiée hors Boostrap</td>
+</tr>
+<tr>
+<td style="text-align: left;">col-1</td>
+<td style="text-align: center;">ajoute une colone, la grille de Boostrap est composée de 12 colone par rangée</td>
+</tr>
+<tr>
+<td style="text-align: left;">col-auto</td>
+<td style="text-align: center;">s'adapte en fonction des colone déja présent dans la rangée</td>
+</tr>
+<tr>
+<td style="text-align: left;">ml-1</td>
+<td style="text-align: center;">margin left a 1rem, si il n' as pas assez d'espace, alors cette règle est sans effet</td>
+</tr>
+<tr>
+<td style="text-align: left;">d-none</td>
+<td style="text-align: center;">l'élément obtient un display à none</td>
+</tr>
+<tr>
+<td style="text-align: left;">d-block</td>
+<td style="text-align: center;">l'élément obtient un display à block</td>
+</tr>
+</tbody>
+</table>
+<h4 id="les-préfixes-des-breakpoints">Les préfixes des breakpoints</h4>
+<p>En fonction de la dimenssion de l'ecran, il est possible de déterminer le nombre de colone des éléments, pour sa il faut ajoutée des préfixes sur les selecteurs. Ainsi col-6 deviendras col-md-6 et ml-1 peut devenir ml-xl-1. Altérée ces selecteurs en fonctions des breakpoints permets de changer l'aperçue global d'un site.</p>
+
+    <!-- End Markdown Monster Content -->
+</div>
+
+
+</body></html>

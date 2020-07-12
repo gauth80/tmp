@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/Gauth/AppData/Local/Temp/_MarkdownMonster_Preview.html -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--<base href="file:///C:\Users\Gauth\Desktop\markdown\md\">--><base href=".">
+  
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="./_Part_html_files/font-awesome.min.css" rel="stylesheet">
+
+  <link href="./_Part_html_files/Theme.css" rel="stylesheet">
+
+  <script src="./_Part_html_files/jquery.min.js.téléchargement"></script>
+  <link href="./_Part_html_files/twilight.css" rel="stylesheet">
+  <script src="./_Part_html_files/highlight.pack.js.téléchargement"></script>
+  <script src="./_Part_html_files/preview.js.téléchargement" id="PreviewScript"></script>
+  
+</head>
+<body>
+<div id="MainContent">
+    <!-- Markdown Monster Content -->
+    <h2 id="partie-html-du-fil-rouge">Partie Html du fil rouge</h2>
+<p>Il y as peu d'exemple car la plupart des snippets sont basiques.</p>
+<h3 id="les-métadonnées">Les métadonnées</h3>
+<p>Les métadonnées sont des données importantes pour un site, ils en existe de toutes sortes selon l'envirronement de développement, sur un envirronement sans auto-chargement c'est à dire sans bundle cela ne comporte qu'une dizaine de meta déployable, le reste est bien souvent déprécier selon Mozilla.</p>
+<p>Les attributs des meta, les scripts et link varies aussi selon la techno utilisée, sur <strong>react</strong> par exemple il est possible de choisir si le script soit synchrone ou non ou si il dois être chargée à la fin. En fonction des cas il faut savoir quoi mettre en premier plan car l'ordre à son importance dans l'en-tête.</p>
+<p>En principe se sont les meta que l'ont place en premier, suivit des cnd puis les scripts ou link appartenant aux projets.</p>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"X-UA-Compatible"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"ie=edge"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"description"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor eos voluptatem sit quasi fugit reiciendis repudiandae at placeat optio quos minima aspernatur nobis corrupti ea nostrum, voluptas modi veritatis! Accusantium, cumque neque quasi voluptas facilis esse omnis laboriosam quo commodi placeat maxime eius incidunt praesentium ullam quia dolore, tempore doloremque.."</span>/&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;?php echo base_url("</span><span class="hljs-attr">assets</span>/<span class="hljs-attr">css</span>/")<span class="hljs-attr">.</span>"<span class="hljs-attr">bootstrap.min.css</span>";?&gt;</span>"&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"icon"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"image/png"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;?php echo base_url("</span><span class="hljs-attr">assets</span>/<span class="hljs-attr">img</span>/<span class="hljs-attr">favicon-min.png</span>");?&gt;</span>" /&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;?php echo base_url("</span><span class="hljs-attr">assets</span>/<span class="hljs-attr">css</span>/")<span class="hljs-attr">.</span>"<span class="hljs-attr">style.css</span>";?&gt;</span>"&gt;
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>v green<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+</code></pre>
+<p>La première metadonnées est celle de l'encodage. Elle indique aux navigateurs la racine de la langue employée, ici c'est utf-8: la racine de cette encodage regroupe entre autres les langues européennes et ces acçents.</p>
+<p>La seconde meta est optionnelle, elle indique au navigateur comment il dois se comportée lors d'un affichage mobile, initial-scale à 1 pouce, plus l'indice est faible, plus le site s'agrandiras cotée mobile par exemple.</p>
+<p>La troisième meta est aussi optionnelle, cela indique à l'agent utilisateur du navigateur qu'internet explorer est égal à edge. Ainsi ie6 ~ ie8 possèderas alors les mêmes règles <strong>SCSS</strong> qu'edge en théorie.</p>
+<p>La quatrième meta est aussi optionnelle mais fortement consseiller pour le référencement naturel du site (SEO). Il s'agit de la description du site visible par le client lors de sa recherche sur le web.
+Google autorise 155 à 255 caractères pour un audit max.</p>
+<p><em>Le premier link ici ne sert qu'a moi, en général je l'éfface, c'est si je n'est pas de connexion aux moins j'ai la grille de Boostrap pour bosser ^^.</em></p>
+<p>Le second link est le seul link de Bootstrap normalement, l'avantage de passer par un cdn c'est que l'on gagne en référencement, pourquoi ? Car les standards de Boostrap respecte les règles établie par W3C.</p>
+<p>Le troisième link, est le link secondaire, pour les mises en page manuelle du site.</p>
+<p>Enfin la balise Title sert à donnée un nom à l'onglet de la page web, bien qu'optionnel elle est fortement recommandée.</p>
+<h3 id="le-header-layouts">Le header (Layouts)</h3>
+<p><em>Notée qu'au moment où j'écris ce diapo je pense sincérement recommençais ce header, fonctionnel mais bien trop volumineux (profondeur du DOM)</em></p>
+<pre><code class="language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container root"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"background:url('&lt;?php echo base_url('assets/img/accueil/background_village.png');?&gt;')"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wrap m-0 p-0"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-12 px-0"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container p-0"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-12 p-0"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row m-0 d-bk"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"background:url('&lt;?php echo base_url('assets/img/header/3_bandes.png');?&gt;');"</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-2 col-lg-2 d-none d-md-block p-0 "</span>&gt;</span>
+                            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar-brand"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;?php echo base_url();?&gt;"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"Vers l'accueil de Village Green"</span>&gt;</span>
+                                <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-inline-blocks"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"&lt;?= base_url('assets/img/header/').'logo_village_green.png'?&gt;"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"logo de l'entreprise village green"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"logo"</span>&gt;</span>
+                            <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                        <span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-md-9 col-xs-12 p-0 ml-auto d-sm-none d-sm-block"</span>&gt;</span>
+                            <span class="hljs-comment">&lt;!--première nav--&gt;</span>
+                            <span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar navbar-expand-sm firstNav px-0 py-0"</span>&gt;</span>
+                                <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"d-sm-none title-nav-service mr-auto pl-4"</span>&gt;</span>Rubrique Client<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                                <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar-brand"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">""</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                                <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar-toggler mr-2 my-2 c-icon-button"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span> <span class="hljs-attr">data-toggle</span>=<span class="hljs-string">"collapse"</span> <span class="hljs-attr">data-target</span>=<span class="hljs-string">"#target1"</span> <span class="hljs-attr">aria-controls</span>=<span class="hljs-string">"target1"</span> <span class="hljs-attr">aria-expanded</span>=<span class="hljs-string">"false"</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Toggle navigation"</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar-toggler-icon c-icon"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                                <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+                                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"collapse navbar-collapse pl-0"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"target1"</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"navbar-nav ml-auto pt-3 mr-2"</span>&gt;</span>
+                                        <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"nav-item active col-xs-3"</span>&gt;</span>
+                                            <span class="php"><span class="hljs-meta">&lt;?</span>= anchor(<span class="hljs-string">'structure/other/info/#info'</span>, <span class="hljs-string">"Info"</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"nav-link pl-4"</span>]);<span class="hljs-meta">?&gt;</span></span>
+                                        <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+                                        
+</code></pre>
+<p>Pour réaliser le header, je suis partie dans la logique qu'il me fallais trois navigations responsive aux possibles je suis donc partie sur trois composants hamburger de Boostrap. Les images sont charger par attribut directement depuis les balises car avec l'architecture du MVC il étais plus conplexe de réalisée cela, en gros pour afficher les images cotée <strong>CSS</strong> il aurais fallut que je fasse un style.php et faire de PHP un préprocesseur, se qui est possible avec apache mais plus facile à dire qu' a réaliser, second contexte j'aurais pus passer par <strong>SASS</strong> mais une fois encore je ne maitrise pas assez cette techno pour de telle prouesse.</p>
+<p>L'ancre formatée par PHP est la seule façon que j'ai trouver pour réaliser une ancre dynamique, c'est à dire qu'en fonction du <strong>Controller</strong> et de sa redirection je peu dirigée le visiteur à l'endroit souhaitée. Cela se décris de cette façon Class/method/arg/ancre, "nom du link", ["class css"].</p>
+<h3 id="snippet-accueil-view">Snippet Accueil (View)</h3>
+<p><em>Code img cassée volontairement pour le markdown, fonctionnement inchangée</em></p>
+<pre><code class="language-html hljs xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"row my-4 section-categories"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">figure</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-sm-6 col-lg-4 text-center col-xl-3 py-0 px-0"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"ventes-link"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;?php echo site_url("</span><span class="hljs-attr">produits</span>/<span class="hljs-attr">list</span>");?&gt;</span>"&gt;
+                <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"&lt;?php echo base_url('assets/img/produits/cat_gui.png'); ?&gt;"</span> 
+                    <span class="hljs-attr">onmouseover</span>=<span class="hljs-string">"this.src='assets/img/wrapper/cat_h_gui.png'"</span>
+                    <span class="hljs-attr">onmouseout</span>=<span class="hljs-string">"this.src='assets/img/produits/cat_gui.png'"</span>
+                    <span class="hljs-attr">title</span>=<span class="hljs-string">"catégorie guitare"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"catégorie guitare"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"thumbnail"</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">figure</span>&gt;</span>
+        
+        <span class="hljs-comment">&lt;!-- Autre cellule contenant le même code..--&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    
+</code></pre>
+<p>Rare utilisation de <strong>JavaScripts</strong> ici où je souhaite changer d'état une image. onmouseout et onmouseover sont des méthodes propre à <strong>JS</strong>, this fais référence au seul objet associée ici présent l'état entre autre, on lui concatènne (ajoute/aditionne) l'attribut src pour source qui réclâme alors un path. De cette façon en fonction de l'état on obtient les images que l'ont souhaites.</p>
+<h2 id="hors-fil-rouge">Hors fil rouge</h2>
+<h3 id="une-autre-variétée-inspirée-de-lhtml">Une autre variétée inspirée de l'html</h3>
+<p>Le Pug ou Jade est un <strong>Template</strong> semblable à l'HTML si ce n'est que celui ci peut être dynamique. Contrairement au Javascript, CSS et HTML, le Pug à besoin d'être compilée pour être lisible cotée navigateur de la même manière que l'on compiles du SCSS en CSS. Ce <strong>Template</strong> permet entre d'effectuée des boucles, des mixins (des sortes de Class) et encore d'importée des variables et des comportement en <strong>Javascripts</strong> directement sur l'HTML.</p>
+<pre><code class="hljs foxpro">
+doctype html
+  head
+    meta(charset=utf<span class="hljs-number">-8</span>)
+    link(rel=<span class="hljs-string">"stylesheet"</span>, href=<span class="hljs-string">"https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"</span>, integrity=<span class="hljs-string">"sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"</span>, crossorigin=<span class="hljs-string">"anonymous"</span>)
+  
+  body.container.bg-dark
+    section.<span class="hljs-built_in">row</span>.<span class="hljs-built_in">col</span><span class="hljs-number">-12.</span>my<span class="hljs-number">-3</span>
+      h3.<span class="hljs-keyword">text</span>-<span class="hljs-built_in">left</span>.<span class="hljs-keyword">text</span>-<span class="hljs-built_in">primary</span>.<span class="hljs-built_in">col</span><span class="hljs-number">-12</span> Exemple de Pug (ancienement Jade)
+      article.<span class="hljs-built_in">col</span><span class="hljs-number">-5.</span>bg-info.rounded
+        p.py<span class="hljs-number">-2.</span>pl<span class="hljs-number">-2</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, molestiae asperiores provident, facilis amet, <span class="hljs-built_in">error</span> unde aliquid blanditiis saepe vel eius nobis, sed itaque reprehenderit expedita sapiente ut. Soluta, ad.
+      article.<span class="hljs-built_in">col</span><span class="hljs-number">-5.</span>offset<span class="hljs-number">-1.</span>bg-success.rounded
+        p.py<span class="hljs-number">-2.</span>pl<span class="hljs-number">-2</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea, molestiae asperiores provident, facilis amet, <span class="hljs-built_in">error</span> unde aliquid blanditiis saepe vel eius nobis, sed itaque reprehenderit expedita sapiente ut. Soluta, ad.
+    nav.nav
+      ul.navbar
+      each value <span class="hljs-keyword">in</span> <span class="hljs-string">['html','css','Js']</span>
+        li.nav-link
+          a(href=<span class="hljs-string">"../unLink/quelquePart/page.pug"</span>, <span class="hljs-keyword">class</span>=<span class="hljs-string">"nav-brand"</span>)= value
+          
+</code></pre>
+<p><em>Note: Je suis passer sous Jsbin pour cette exemple, d'où la précision de l'encodage.</em></p>
+<p>Ce genre de synthaxe ne laisse pas de place aux erreurs, le moindre espace manquant fait plantée l'ensemble du script.</p>
+<p>L'Soucie de ce langage est qu'il compris par pratiquement aucun Ide actuellement et peu rechercher.
+Sur NodeJs, il faut préçisée le moteur de template en amont pour générée des pages, c'est de cette façon que j'ai découvert le <strong>Pug</strong>.</p>
+<h3 id="php-peu-génrée-aussi-des-balises-html">PHP peu génrée aussi des balises html</h3>
+<p>Sur certain Snippet on peu aperçevoir</p>
+<pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?</span>= form_open_multipart(<span class="hljs-string">'produits/create_produits'</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"col-sm-12 col-lg-9 mt-2 form-produits"</span>]); <span class="hljs-meta">?&gt;</span></span>
+
+<span class="php"><span class="hljs-meta">&lt;?php</span> validation_errors();<span class="hljs-meta">?&gt;</span></span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>= form_submit(<span class="hljs-string">"create_pro"</span>, <span class="hljs-string">"Envoyez"</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"btn btn-custom my-2 mx-2"</span>], [<span class="hljs-string">"type"</span> =&gt; <span class="hljs-string">"submit"</span>]);<span class="hljs-meta">?&gt;</span></span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>= form_close(); <span class="hljs-meta">?&gt;</span></span>
+
+<span class="php"><span class="hljs-meta">&lt;?</span>= anchor(<span class="hljs-string">'structure/other/propos/#propos'</span>, <span class="hljs-string">"As propos"</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"nav-link pl-4"</span>]);<span class="hljs-meta">?&gt;</span></span>
+
+
+</code></pre>
+<p>Il existe encore bien plus de méthode pouvant interprétée des balises Html, en général en opteras pour de simple balise Html, mais dans des cas particuliers cette méthode de balisage est forte utile, pour ma part sans sa, je n'aurais jamais pus réalisée des ancres tout en respectant le MVC, car il fallais que je prenne en conssidération les résultats des méthodes cotée Controller, là où l'HTML classique ne peu l'influençée.</p>
+<h3 id="cotée-react">Cotée React</h3>
+<p>Je ne peu trop m'avançée sur ce sujet, j'étudie React en ce moment comme je continue le site (il y as toujours quelques choses à faire, à rectifiée..)</p>
+<p>Cotée React donc, l'HTML peu varier aussi si l'ont fais des composants par exemple les attributs <strong>Class</strong> deviennent <strong>ClassName</strong>, l'attribut <strong>for</strong> des balises label sont désormais <strong>htmlFor</strong>, enfin les balises doivent être auto-fermante chose non systématique dans l'HTML.</p>
+
+    <!-- End Markdown Monster Content -->
+</div>
+
+
+</body></html>

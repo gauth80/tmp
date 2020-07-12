@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/Gauth/AppData/Local/Temp/_MarkdownMonster_Preview.html -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--<base href="file:///C:\Users\Gauth\Desktop\">--><base href=".">
+  
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="./_part_php_files/font-awesome.min.css" rel="stylesheet">
+
+  <link href="./_part_php_files/Theme.css" rel="stylesheet">
+
+  <script src="./_part_php_files/jquery.min.js.téléchargement"></script>
+  <link href="./_part_php_files/twilight.css" rel="stylesheet">
+  <script src="./_part_php_files/highlight.pack.js.téléchargement"></script>
+  <script src="./_part_php_files/preview.js.téléchargement" id="PreviewScript"></script>
+  
+</head>
+<body>
+<div id="MainContent">
+    <!-- Markdown Monster Content -->
+    <h2 id="partie-crud-produits">Partie Crud produits</h2>
+<blockquote>
+<p>Create • Read • Update &amp; Delete</p>
+</blockquote>
+<h2 id="avant-propos-">Avant propos :</h2>
+<p>Dans un crud, create est l'insertion de données, cotée vsisiteur cela s'effectue via les formulaires, via ce contexte de fil rouge il me fallait réaliser un formulaire d'ajout pour les produits, ce formulaire n'as de portée que pour les membres du fil rouge, c'est à dire qu'aucun visiteur ne peu rajoutée de produits.</p>
+<p>Mais avant de se lancer dans les explications du fonctionnement du model et du Controller, voici ce à quoi ressemble ce formulaire de façon générale cotée code :</p>
+<h3 id="vue-du-snippet-views--proajout">Vue du snippet Views &gt; proAjout</h3>
+<pre><code class="hljs xml">
+<span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-dark col-auto h3-produits"</span>&gt;</span>Ajout de produits<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="php"><span class="hljs-meta">&lt;?</span>= form_open_multipart(<span class="hljs-string">'produits/create_produits'</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"col-sm-12 col-lg-9 mt-2 form-produits"</span>]); <span class="hljs-meta">?&gt;</span></span>
+<span class="php"><span class="hljs-meta">&lt;?php</span> validation_errors();<span class="hljs-meta">?&gt;</span></span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"catExist"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"offset-sm-1"</span>&gt;</span>Choisir une catégorie *<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"cat_exist"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"catExist"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span>&gt;</span>
+            <span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>($cat_exist <span class="hljs-keyword">as</span> $cat){<span class="hljs-meta">?&gt;</span></span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"&lt;?php echo $cat-&gt;CAT_ID;?&gt;"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> $cat-&gt;CAT_LIBELLE;<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+            <span class="php"><span class="hljs-meta">&lt;?php</span> };<span class="hljs-meta">?&gt;</span></span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row &lt;?= empty(form_error('pro_lib')) ? '' : 'has-error';?&gt;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"libelle"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"offset-sm-1 col-10"</span>&gt;</span>Le libelle&amp;nbsp;:&amp;nbsp;*<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pro_lib"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"libelle"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Gipson"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-warning offset-sm-1"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= form_error(<span class="hljs-string">'pro_lib'</span>);<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row &lt;?= empty(form_error('pro_ref')) ? '' : 'has-error';?&gt;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"ref"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"offset-sm-1 col-10"</span>&gt;</span>La ref&amp;nbsp;:&amp;nbsp;*<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pro_ref"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ref"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"gui000"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-warning offset-sm-1"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= form_error(<span class="hljs-string">'pro_ref'</span>);<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row &lt;?= empty(form_error('pro_prix')) ? '' : 'has-error';?&gt;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"prix"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"offset-sm-1"</span>&gt;</span>Définir un prix&amp;nbsp;:&amp;nbsp;*<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pro_prix"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"prix"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"99.99"</span> <span class="hljs-attr">min-size</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">max-size</span>=<span class="hljs-string">"99999.99"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-warning offset-sm-1"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= form_error(<span class="hljs-string">'pro_prix'</span>);<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row &lt;?= empty(form_error('pro_stock')) ? '' : 'has-error';?&gt;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"stock"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"offset-sm-1"</span>&gt;</span>Entrer un stock&amp;nbsp;:&amp;nbsp;*<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pro_stock"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"stock"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span> <span class="hljs-attr">min-size</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">max-size</span>=<span class="hljs-string">"500"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"10"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-warning offset-sm-1"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= form_error(<span class="hljs-string">'pro_stock'</span>);<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row &lt;?= empty(form_error('pro_desc')) ? '' : 'has-error';?&gt;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"desc"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"offset-sm-1"</span>&gt;</span>Indiquez une description&amp;nbsp;:&amp;nbsp;*<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"pro_desc"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"desc"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span> <span class="hljs-attr">min-size</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">max-size</span>=<span class="hljs-string">"500"</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"Il étais une fois.."</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-warning offset-sm-1"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= form_error(<span class="hljs-string">'pro_desc'</span>);<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row &lt;?= empty(form_error('err_img')) ? '' : 'has-error';?&gt;"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"stock"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"offset-sm-1"</span>&gt;</span>Inserez une image&amp;nbsp;:&amp;nbsp;*<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"img"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"stock"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control offset-sm-1 w-75"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-warning offset-sm-1"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?</span>= form_error(<span class="hljs-string">'err_img'</span>);<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+    <span class="php"><span class="hljs-meta">&lt;?</span>= form_submit(<span class="hljs-string">"create_pro"</span>, <span class="hljs-string">"Envoyez"</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"btn btn-custom my-2 mx-2"</span>], [<span class="hljs-string">"type"</span> =&gt; <span class="hljs-string">"submit"</span>]);<span class="hljs-meta">?&gt;</span></span>
+    <span class="php"><span class="hljs-meta">&lt;?</span>= form_close(); <span class="hljs-meta">?&gt;</span></span>
+    
+</code></pre>
+<h3 id="découpons-pour-mieux-compprendre">Découpons pour mieux compprendre</h3>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-dark col-auto h3-produits"</span>&gt;</span>Ajout de produits<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+<span class="php"><span class="hljs-meta">&lt;?</span>= form_open_multipart(<span class="hljs-string">'produits/create_produits'</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"col-sm-12 col-lg-9 mt-2 form-produits"</span>]); <span class="hljs-meta">?&gt;</span></span>
+<span class="php"><span class="hljs-meta">&lt;?php</span> validation_errors();<span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group row"</span>&gt;</span>
+    ... Le code du formulaires..
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+</code></pre>
+<p>Pour commençais j'ouvre un formulaire grâce aux méthodes natif propre à PHP, réalisable aussi en HTML, multipart indique que dans le formulaire il y auras un moment donnée besoin de traitée autre chose qu'une valeur string ou number habituelle, dans le cas présent multipart gère l'importation d'une image.</p>
+<p>Le formulaire prend en charge deux paramètres, le premier est 'produits/create_produits' qui réclâme le <strong>Le Controller</strong> suivit de sa méthode pour agir, le second paramètre est optionnel, il s'agit des class <strong>CSS</strong>.</p>
+<p>validation_errors() est propre à Ci3 et permet entre autre d'afficher le retour d'erreur cotée client.</p>
+<h3 id="champs-de-selection-des-catégories">Champs de selection des catégories</h3>
+<pre><code class="hljs javascript">&lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">"catExist"</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"offset-sm-1"</span>&gt;Choisir une catégorie *<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span></span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"cat_exist"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"catExist"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span>&gt;</span>
+    <span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>($cat_exist <span class="hljs-keyword">as</span> $cat){<span class="hljs-meta">?&gt;</span></span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">option</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"&lt;?php echo $cat-&gt;CAT_ID;?&gt;"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> $cat-&gt;CAT_LIBELLE;<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span>
+    <span class="php"><span class="hljs-meta">&lt;?php</span> };<span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span></span>
+
+</code></pre>
+<p>Ici je souhaite afficher les catégories des produits pour que l'utilisateur puisse en choisir une. Pour se faire j'utilise un <strong>foreach</strong> pour recherché les données corespondantes au champ libellé de la base de donnée.</p>
+<p><strong>foreach</strong> décharge toutes les données existantes du champs libellé (appelé CAT_LIBELLE) dans la base de donnée. Ce données décharger s'affiche alors dans les options et sont indexée par les id dans value. Notons que le résultat de <strong>foreach</strong> varies selon la requète SQL derrière, mais globalement son rôle reste le même parcourir un tableau.</p>
+<h3 id="le-champs-stock">Le champs stock</h3>
+<p><em>Ce champs est pris au hasard, les autres champs fonctionnent de la même manières</em></p>
+<pre><code class="hljs foxpro">&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"form-group row &lt;?= empty(form_error('pro_stock')) ? '' : 'has-error';?&gt;"</span>&gt;
+    &lt;<span class="hljs-keyword">label</span> <span class="hljs-keyword">for</span>=<span class="hljs-string">"stock"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"offset-sm-1"</span>&gt;Entrer un stock&amp;nbsp;:&amp;nbsp;*&lt;/<span class="hljs-keyword">label</span>&gt;
+    &lt;<span class="hljs-keyword">input</span> name=<span class="hljs-string">"pro_stock"</span> <span class="hljs-keyword">id</span>=<span class="hljs-string">"stock"</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">"form-control w-75 offset-sm-1"</span> <span class="hljs-built_in">min</span>-<span class="hljs-keyword">size</span>=<span class="hljs-string">"0"</span> <span class="hljs-built_in">max</span>-<span class="hljs-keyword">size</span>=<span class="hljs-string">"500"</span> placeholder=<span class="hljs-string">"10"</span>&gt;
+    &lt;span <span class="hljs-keyword">class</span>=<span class="hljs-string">"text-warning offset-sm-1"</span>&gt;&lt;?= form_error(<span class="hljs-string">'pro_stock'</span>);?&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+<p>Je regroupe chaque <strong>input</strong> dans une <strong>div</strong> cela me permet de retournée une erreur de façon ciblée.
+Dans la <strong>div</strong> il y as l'attribut <strong>Class</strong> qui prend une instruction en php, en ternaire: Si form error est vide alors rien, cela se caractérise par une chaine vide sans espacement, sinon cela retourneras le selecteur <em>has-error</em>, <em>has-error</em> est un selecteur compris par Boostrap, il possède ces propres règles de formatage, au niveau du <strong>span</strong> Cela fonctionne en fonction du résultat du ternaire plus haut, si cela retourne <strong>True</strong> alors cela afficheras un message référent au form validation de Ci3, si <strong>False</strong> donc aucune erreur trouver, alors rien ne s'afficheras.</p>
+<p>Pro_stock de <strong>name</strong> est la valeur récupérée du <strong>input</strong>, c'est cette donnée cotée utilisateur qui seras traitée et peut être acheminée cotée base de données (si valide).</p>
+<h3 id="config--form_validation">Config &gt; Form_validation</h3>
+<p>C'est cette page qui traite les formulaires cotée produit, elle fonctionne en parallèle avec une bibliotèque dans Ci3 via le system.</p>
+<pre><code class="hljs php">    <span class="hljs-comment">// d'autres règles pour d'autres crud..</span>
+    
+	<span class="hljs-string">'create'</span> =&gt; <span class="hljs-keyword">array</span>(
+		<span class="hljs-comment">//rx slug</span>
+		<span class="hljs-keyword">array</span>(
+			<span class="hljs-string">'field'</span> =&gt; <span class="hljs-string">'pro_lib'</span>,
+			<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'libelle'</span>,
+			<span class="hljs-string">'rules'</span> =&gt; <span class="hljs-string">'required|min_length[1]|max_length[50]|trim|regex_match[/^[a-zA-Z0-9]+(?:\s[a-zA-Z0-9]+)*$/]'</span>
+		),
+
+		<span class="hljs-keyword">array</span>(
+			<span class="hljs-string">'field'</span> =&gt; <span class="hljs-string">'pro_ref'</span>,
+			<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'référence'</span>,
+			<span class="hljs-string">'rules'</span> =&gt; <span class="hljs-string">'required|min_length[3]|max_length[8]|trim|is_unique[produits.PRO_REF]|regex_match[/^[a-zA-Z]{3,4}[0-9]{3,4}$/]'</span>
+		),
+
+		<span class="hljs-keyword">array</span>(
+			<span class="hljs-string">'field'</span> =&gt; <span class="hljs-string">'pro_prix'</span>,
+			<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'prix'</span>,
+			<span class="hljs-string">'rules'</span> =&gt; <span class="hljs-string">'required|min_length[1]|max_length[7]|decimal|trim|regex_match[/^[0-9]{1,7}\.[0-9]{2}$/]'</span>
+		),
+
+		<span class="hljs-keyword">array</span>(
+			<span class="hljs-string">'field'</span> =&gt; <span class="hljs-string">'pro_stock'</span>,
+			<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'stock'</span>,
+			<span class="hljs-string">'rules'</span> =&gt; <span class="hljs-string">'required|min_length[1]|max_length[3]|alpha_numeric|integer|trim'</span>
+		),
+
+		<span class="hljs-keyword">array</span>(
+			<span class="hljs-string">'field'</span> =&gt; <span class="hljs-string">'pro_desc'</span>,
+			<span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'description'</span>,
+			<span class="hljs-string">'rules'</span> =&gt; <span class="hljs-string">'required|min_length[8]|max_length[999]|trim|regex_match[/^[a-zA-Z0-9][^#&lt;&gt;-]{8,999}$/]'</span>
+		)
+	),
+	
+
+</code></pre>
+<p>Globalement c'est un tableau multidimentionnel regrouppant les keys et value destinée à interragir avec les formulaires cotée <strong>Views</strong> et le <strong>Controller</strong>.</p>
+<p>Chaque tableau est associée à un champ particulier, ce moyen est propre à Ci: la Key field correspond à l'input en fonction de sa valeur <strong>name</strong>. La key Label est destinée aux rapport d'erreur de la cellule (la div regrouppant le champs). Enfin la Key rules définit les règles du champ.</p>
+<p>Cette synthaxe est propre à Ci3, les OU logique ici sont interprétée de cette sorte par exemple.
+Pourquoi cette façon ? Simple cela évite le gros patée de règle dans le <strong>Controller</strong>, morcelé le contrôle des formulaires permet aussi de le rendre modulables sur tout le site.</p>
+<p>Enfin vous remarquerais qu'il n ' y as pas de <strong>set_message</strong> la raison est qu'il y as une librairy de langue française qui gère justement ces messages d'erreur cotée client, je l'ai installée en amont. Elle se base sur chacune des règles (rules) même sur les regex.</p>
+<h2 id="cotée-controller">Cotée Controller</h2>
+<p>Voila la mécanique cotée <strong>View</strong> as présent voici le fonctionnement cotée Controller, pour rappel le Controller fait partie d'une des couches du MCV c'est cette couche où l'on dois normalement appliquer les règles des formulaires et les redirection des pages hors routage manuel. Cette couche est en lien avec le <strong>Model</strong> et la <strong>View</strong>.</p>
+<h2 id="lobjet-et-son-immuabilitée">L'objet et son immuabilitée</h2>
+<p>Avant de détaillée les Class, je pense qu'il est bon de savoir ce qu'est une Class, en po les Class permette de regroupée un enssemble de méthode et d'attribut pour un seul et même objet. C'est objet peuvent être instancier, la Class est en quelque sorte un moule de l'objet, une fois l'objet instanciée il est possibles alors d'utilisée ces méthodes et ces attributs.</p>
+<p>Cependant un objet instanciée ne peu modifiée ces méthodes et attributs propre à sa Class de façon permanente, cette notion d'immuabilitée est propre à la Class. Ont peu modifiée parallèlement les méthodes et attribut de l'objet crée grace aux setters et mutatteur mais le moule resteras le même quoiqu'il arrive.</p>
+<p>L'héritage des Controller nous permet de nous servir des méthodes propres de Ci mais pas de les réecrires.</p>
+<h3 id="snippet-de-la-class-controller">Snippet de la Class (Controller)</h3>
+<pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Produits</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CI_Controller</span> </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">parent</span>::__construct();
+        <span class="hljs-keyword">$this</span>-&gt;load-&gt;model(<span class="hljs-string">'Produits_model'</span>)
+                   -&gt;helper(<span class="hljs-keyword">array</span>(<span class="hljs-string">'inflector'</span>, <span class="hljs-string">'form'</span>))
+                   -&gt;library(<span class="hljs-string">'form_validation'</span>);
+    }
+
+    <span class="hljs-comment">/*
+    * Simplement pour réduire la répétition
+    * <span class="hljs-doctag">@param</span> array [ 'donnée' =&gt; refObj-&gt;model-&gt;method() ]
+    * return array
+    */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">data</span><span class="hljs-params">($data = array<span class="hljs-params">()</span> )</span> </span>{
+        <span class="hljs-keyword">return</span> $data = 
+            <span class="hljs-keyword">array</span>( <span class="hljs-string">'dataC'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;produits_model-&gt;get_produits_for_client(),
+                   <span class="hljs-string">'data'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;produits_model-&gt;get_produits_for_personnal(),
+                   <span class="hljs-string">'cat_exist'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;produits_model-&gt;get_categories_data()
+            );
+    }
+
+</code></pre>
+<p>Le constructeur permet de chargée les méthodes et attributs propre à CI_Controller mais surtout de pouvoir les instanciée à chaque nouvelle objet, <em>un peu comme react et ces props..</em></p>
+<p>$this pour ceci fais référence au constructeur, donc à un objet de la Class Produits.
+load est propre à Ci3, cela charge assignation suivante qui est là une méthode.
+model est une méthode propre à Ci3, elle permet de charger un model souhaitée entre parenthèse.</p>
+<p>helper() et librairy() sont également des méthodes propres à Ci3 et peuvent reçevoir certain paramètres. Remarquez qu'ils n' y as pas de ; entre chaque chargement, j'utilise la patern propre de Ci3 qui est le fluent, entre autre le chainage.</p>
+<p>La fonction est en visibilitée privée car je souhaite qu'elle ne soit pas instanciée directement par l'objet en lui même mais plutot par le biais de ces méthodes si besoin.</p>
+<p>Cette fonction retourne un tableau contenant différentes instructions, l'idée ici étais de factorisée le code, sa peu paraître abrupt vue comme sa mais le snippet suivant permettras d' y voir plus clair.</p>
+<h3 id="snippet-redirections-controller">Snippet redirections (Controller)</h3>
+<pre><code class="hljs php">    <span class="hljs-comment">/*
+    * Redirection
+    */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">$this</span>-&gt;templates-&gt;display(<span class="hljs-string">'produits/index'</span>, $data = <span class="hljs-keyword">self</span>::data(<span class="hljs-keyword">array</span>(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>)));
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">list</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">$this</span>-&gt;templates-&gt;display(<span class="hljs-string">'produits/pro_list'</span>, $data = <span class="hljs-keyword">self</span>::data(<span class="hljs-keyword">array</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)));
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ajout</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">$this</span>-&gt;templates-&gt;display(<span class="hljs-string">'produits/proAjouts'</span>, $data = <span class="hljs-keyword">self</span>::data(<span class="hljs-keyword">array</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)));
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">modif</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">$this</span>-&gt;templates-&gt;display(<span class="hljs-string">'produits/proModif'</span>, $data = <span class="hljs-keyword">self</span>::data(<span class="hljs-keyword">array</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)));
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">del</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">$this</span>-&gt;templates-&gt;display(<span class="hljs-string">'produits/proDelete'</span>, $data = <span class="hljs-keyword">self</span>::data(<span class="hljs-keyword">array</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)));
+    }
+    
+    
+</code></pre>
+<p>Une fois encore par soucie de refactorisation j'ai fais ceci sa m'évite de réecrire du code inutile.
+Le template ici nous permet de chargée de la même façon $this-&gt;load-&gt;view('views/laPage', arg).</p>
+<p>L'argument $data demande la fonction privée, self fait référence à la Class et non à l'objet, les opérateur de liaison indique que self est associée à une fonction du nom de data(param).
+En paramètre cela est un tableau contenant les key souhaitée.</p>
+<p>En vrais il est inutile de précisée les key car fonction data retourne l'ensemble de ces keys mais, par soucie de lisibilitée j'ai préférée les laissez.</p>
+<h3 id="snippet-create-controller">Snippet Create (Controller)</h3>
+<pre><code class="hljs php"><span class="hljs-comment">// &lt;!&gt; create et update sont senssiblement identiques, seules les requètes cotée SQL changent.</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create_produits</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'create_pro'</span>)) {
+            
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">$this</span>-&gt;form_validation-&gt;run(<span class="hljs-string">'create'</span>) == <span class="hljs-keyword">FALSE</span>) {
+            <span class="hljs-keyword">$this</span>-&gt;ajout();
+        } <span class="hljs-keyword">else</span> {
+            $config[<span class="hljs-string">'upload_path'</span>] = <span class="hljs-string">'./assets/img/produits/listes/'</span>;
+            $config[<span class="hljs-string">'allowed_types'</span>] = <span class="hljs-string">'jpg|png'</span>;
+            $config[<span class="hljs-string">'max_size'</span>] = <span class="hljs-string">'800000'</span>; 
+            $config[<span class="hljs-string">'max_width'</span>] = <span class="hljs-string">'2000'</span>;
+            $config[<span class="hljs-string">'max_height'</span>] = <span class="hljs-string">'2000'</span>;
+            $slug = url_title(<span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_lib'</span>), <span class="hljs-string">'_'</span>, <span class="hljs-keyword">true</span>);
+            $config[<span class="hljs-string">'file_name'</span>] = $slug;
+
+            <span class="hljs-keyword">$this</span>-&gt;load-&gt;library(<span class="hljs-string">'upload'</span>, $config);
+            <span class="hljs-keyword">$this</span>-&gt;upload-&gt;initialize($config);
+
+            <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">$this</span>-&gt;upload-&gt;do_upload($pro_img = <span class="hljs-string">'img'</span>, $slug)) {
+                
+                $errors = <span class="hljs-keyword">array</span>(<span class="hljs-string">'error'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;upload-&gt;display_errors());
+                <span class="hljs-keyword">$this</span>-&gt;ajout();
+            } <span class="hljs-keyword">else</span> {
+                $data = <span class="hljs-keyword">array</span>(<span class="hljs-string">'upload_data'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;upload-&gt;data());
+                $pro_img = substr(<span class="hljs-keyword">$this</span>-&gt;upload-&gt;data(<span class="hljs-string">'file_ext'</span>), <span class="hljs-number">1</span>);
+                <span class="hljs-keyword">$this</span>-&gt;produits_model-&gt;insert_produits($pro_img, $slug);
+                <span class="hljs-keyword">$this</span>-&gt;list();
+            }
+        }
+    }
+}
+
+</code></pre>
+<p>Cotée client le boutton contient un attribut name <strong>create_pro</strong> si ce Controller reçois via la méthode post() cette attribut alors cela renvoit à <strong>True</strong>.</p>
+<p>La deuxième contition vérifie si le form_validation cotée config est lue ou non, si <strong>False</strong> cela retourne au formulaire d'ajout. Si <strong>True</strong> alors cela prend le paramètre create du form validation et vérifie que tout est en ordre, en cas d'erreur de champs de saisie le form validation retourneras l'erreur à la cellule en question cotée <strong>View</strong>.</p>
+<p>Les config sont propres à la version de php &gt; 7 pour le traitement des images.
+url_title est propre à inflector de Ci3, une librairy de réecriture d'url, d' où le slug.
+Cela prend la donnée du champs de saisie, ici le libelle, si il trouve un espace alors cela ajoute un underscore permettant ainsi la lecture de l'image par la suite.</p>
+<p>Oui le slug est basée sur le libellée du produit.
+La méthode substr avec son paramètre retourne la dernière occurence de la chaine de caractère, a savoir le format de l'image, enfin si celui ci est valide selon la whitelist des config.</p>
+<h3 id="snippet-delete--détail-controller">Snippet delete &amp; détail (Controller)</h3>
+<pre><code class="hljs php">    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delete_produits</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'delete_pro'</span>)) {
+            $id = <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_exist'</span>);
+            <span class="hljs-keyword">$this</span>-&gt;produits_model-&gt;delete_produits($id);
+            <span class="hljs-keyword">$this</span>-&gt;list();
+        }
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">details</span><span class="hljs-params">($slug)</span> </span>{
+        $detail = <span class="hljs-keyword">$this</span>-&gt;produits_model-&gt;get_produits($slug);
+        $data[<span class="hljs-string">'detail'</span>] = $detail;
+        <span class="hljs-keyword">$this</span>-&gt;templates-&gt;display(<span class="hljs-string">'produits/detail'</span>, $data);     
+    }
+    
+} <span class="hljs-comment">// fin de la Class Produits</span>
+
+</code></pre>
+<p>Je n'ai pas grand chose à dire pour ces deux méthodes là, à part que détails prend en paramètre le slug.
+Pour moi avoir le nom du produit en url est plus parlant qu'un chiffre.</p>
+<h2 id="le-model-du-produits">Le model du produits</h2>
+<p>Le <strong>Model</strong> est la dernière couche du MVC, elle est en lien avec le <strong>Controller</strong> uniquement niveau serveur et est en relation avec la base de donnée. On peu mettre en relation le <strong>Model</strong> avec la vue cependant on ne respecte plus forcement le patron de conception qu'est le MVC mais cela se fait dans de rare exception, de souvenir l'import d'une module::method() dans une vue en est un exemple.</p>
+<h3 id="snippet-de-la-class-model">Snippet de la Class (Model)</h3>
+<pre><code class="hljs php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Produits_model</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">CI_Model</span> </span>{
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">()</span> </span>{
+		<span class="hljs-keyword">$this</span>-&gt;load-&gt;database();
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_produits_for_client</span><span class="hljs-params">()</span> </span>{
+		<span class="hljs-keyword">$this</span>-&gt;db-&gt;order_by(<span class="hljs-string">'produits.PRO_ID'</span>, <span class="hljs-string">'DESC'</span>)
+			 -&gt;join(<span class="hljs-string">'categorie'</span>, <span class="hljs-string">'categorie.CAT_ID = produits.CAT_ID'</span>)
+			    <span class="hljs-comment">//aff produits si diff de 0</span>
+			 -&gt;having(<span class="hljs-string">'PRO_STOCK_PHYSIQUE != 0'</span>);
+		$query = <span class="hljs-keyword">$this</span>-&gt;db-&gt;get(<span class="hljs-string">'produits'</span>);
+		<span class="hljs-keyword">return</span> $query-&gt;result();
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_produits_for_personnal</span><span class="hljs-params">()</span> </span>{
+		<span class="hljs-keyword">$this</span>-&gt;db-&gt;order_by(<span class="hljs-string">'produits.PRO_ID'</span>, <span class="hljs-string">'DESC'</span>);				  
+		$query = <span class="hljs-keyword">$this</span>-&gt;db-&gt;get(<span class="hljs-string">'produits'</span>);
+		<span class="hljs-keyword">return</span> $query-&gt;result();
+	}
+	
+</code></pre>
+<p>Comme le <strong>Controller</strong> le <strong>Model</strong> hérite des méthodes et attributs de Ci3. Ainsi on retrouve un constructeur(). Et une nouvelle méthode s'occupant de l'instance de connexion à la base de donnée, sans elle impossible de chargée les données.</p>
+<p>Les deux fonctions sont simulaires à quelque degrès près l'une charge les produits qu'en fonction du stock existant, tandis que l'autres charge tout les produits existant cotée administration.</p>
+<p>Codeigniter et sa patern Fluent permet se chaînage des requètes les une après les autres, les méthodes sont en général assez parlante pour leurs utilisations, en revanche il est bon de précisée que result() retourne un enssemble de données saisie selon le query et non une ligne comme le voudrais la méthode row().</p>
+<h3 id="la-méthode-update-model">La méthode Update (Model)</h3>
+<p>Elle aussi est plus ou moins identique que Create, mais pour évitée les conflits avec cette dernière j'ai juger utile de la réecrire.</p>
+<pre><code class="hljs php">	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">update_produits</span><span class="hljs-params">($pro_img, $slug)</span> </span>{
+
+        $data = <span class="hljs-keyword">array</span>(
+			<span class="hljs-string">'PRO_LIBELLE'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_lib'</span>),
+			<span class="hljs-string">'PRO_REF'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_ref'</span>),
+			<span class="hljs-string">'PRO_DESCRIPTION'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_desc'</span>),
+			<span class="hljs-string">'PRO_PRIX_ACHAT'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_prix'</span>),
+			<span class="hljs-string">'PRO_STOCK_PHYSIQUE'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_stock'</span>),
+			<span class="hljs-string">'CAT_ID'</span> =&gt; <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'cat_exist'</span>),
+			<span class="hljs-string">'PRO_SLUG'</span> =&gt; $slug,
+			<span class="hljs-string">'PRO_PHOTO'</span> =&gt; $pro_img
+            );
+
+            <span class="hljs-keyword">$this</span>-&gt;db-&gt;where(<span class="hljs-string">'PRO_ID'</span>, <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_exist'</span>));
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;db-&gt;update(<span class="hljs-string">'produits'</span>, $data);
+	}
+	
+</code></pre>
+<p>Les deux fonctions ont les même paramètres, ces paramètres recupères les données saisie et controler niveau <strong>Controller</strong> et sont acheminée dans le tableau en fonction de leurs index.</p>
+<p>Les index ici sont en référence aux noms des tables de données, cela n'est réalisable qu'avec la méthode du constructeur qui connecte le <strong>Model</strong> à la base de donnée.</p>
+<p>Ainsi ont peu indiquée $this-&gt;db-&gt;where('index/key', $ceci-&gt;target-&gt;method('name'));
+input n'est qu'une méthod de Ci3 mais dans ce contexte une balise html, cette balise on lui demande de récupérée ces données, pour ce faire car après tout cela peu ciblé n'importe quel balise dans ce cas, il faut précisée l'attribut name en question (pro_exist ici).</p>
+<p>Enfin, une fois les données récupérée, on retourne l'update en spécifiant bien le nom de la table, et se que l'on y retournée ($data).</p>
+<h3 id="delete-les-catégories-et-le-détail-model">Delete, les catégories et le détail (Model)</h3>
+<pre><code class="hljs php">	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">delete_produits</span><span class="hljs-params">($id)</span> </span>{
+        <span class="hljs-keyword">$this</span>-&gt;db-&gt;where(<span class="hljs-string">'PRO_ID'</span>, <span class="hljs-keyword">$this</span>-&gt;input-&gt;post(<span class="hljs-string">'pro_exist'</span>));
+        <span class="hljs-keyword">$this</span>-&gt;db-&gt;delete(<span class="hljs-string">'produits'</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_categories_data</span><span class="hljs-params">()</span> </span>{
+		
+		<span class="hljs-keyword">$this</span>-&gt;db-&gt;select(<span class="hljs-string">'*'</span>)
+				 -&gt;order_by(<span class="hljs-string">'CAT_ID'</span>, <span class="hljs-string">'ASC'</span>);
+		$query = <span class="hljs-keyword">$this</span>-&gt;db-&gt;get(<span class="hljs-string">'categorie'</span>);
+		<span class="hljs-keyword">return</span> $query-&gt;result();
+	}
+
+	<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">get_produits</span><span class="hljs-params">($slug)</span> </span>{
+		$detail = <span class="hljs-keyword">$this</span>-&gt;db-&gt;select(<span class="hljs-string">'*'</span>)-&gt;from(<span class="hljs-string">'produits'</span>)-&gt;join(<span class="hljs-string">'categorie'</span>, <span class="hljs-string">'produits.CAT_ID = categorie.CAT_ID'</span>)-&gt;where(<span class="hljs-string">'PRO_SLUG'</span>, $slug)-&gt;get();
+		<span class="hljs-keyword">return</span> $detail-&gt;row();
+
+	}
+
+} <span class="hljs-comment">// Fin de la Class Produits_model</span>
+
+</code></pre>
+<p>La fonction delete fonctionne avec l'id des produits, cotée <strong>View</strong> le formulaire l'id est indiquée dans les options d'une downdroplist (balisage select et options), il passe en paramètre également dans le <strong>Controller</strong> puis passe de nouveau dans le <strong>Model</strong> pour être compris, une fois selectionnée dans le query delete, on retourne <strong>True</strong> pour validée l'action.</p>
+<p>Cotée fonction catégories je retourne simplement la table catégorie en question dans l'ordre alphabétique.</p>
+<p>Enfin pour le détail, $détail contient la requète SQL et je retourne simplement la rangée du produit avec row(). Cette requète etant attribuée à la variable $détail, cotée <strong>Controller</strong> comme <strong>View</strong> je peu aussi la déployée, bien que déprécier.</p>
+<h2 id="view-produits-cotée-visiteur">View produits cotée visiteur</h2>
+<pre><code class="hljs javascript">&lt;section <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">"row py-5"</span>&gt;
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wrap-produits my-5 row"</span>&gt;</span>
+	<span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span> ($dataC <span class="hljs-keyword">as</span> $pro) { <span class="hljs-meta">?&gt;</span></span>
+	  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"card my-5 mx-auto"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"face revers1"</span>&gt;</span>
+		  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"contenue text-center"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"img-fluid"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"&lt;?php echo base_url() ;?&gt;assets/img/produits/listes/&lt;?php echo $pro-&gt;PRO_SLUG;?&gt;.&lt;?php echo $pro-&gt;PRO_PHOTO;?&gt;"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"&lt;?php echo $pro-&gt;PRO_LIBELLE ;?&gt;"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> $pro-&gt;PRO_LIBELLE ;<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+		 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"face revers2"</span>&gt;</span>
+		  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"contenue"</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Produits disponible&amp;nbsp;:&amp;nbsp;<span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> $pro-&gt;PRO_STOCK_PHYSIQUE ;<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> word_limiter($pro-&gt;PRO_DESCRIPTION,<span class="hljs-number">15</span>) ;<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span>REF<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span>&amp;nbsp;:&amp;nbsp;<span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> $pro-&gt;PRO_REF ;<span class="hljs-meta">?&gt;</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"&lt;?php echo site_url('/produits/details/').$pro-&gt;PRO_SLUG ;?&gt;"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"btn"</span>&gt;</span>Lire plus<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"price"</span>&gt;</span><span class="php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> $pro-&gt;PRO_PRIX_ACHAT ;<span class="hljs-meta">?&gt;</span></span>&amp;nbsp;€<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+		  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="php"><span class="hljs-meta">&lt;?php</span> } ;<span class="hljs-meta">?&gt;</span></span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span></span>
+
+</code></pre>
+<p>Snippet de la page produit, désoler pour l'indentation le markdown ne calcule pas les espaces comme souhaitée.</p>
+
+    <!-- End Markdown Monster Content -->
+</div>
+
+
+</body></html>
