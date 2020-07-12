@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!-- saved from url=(0071)file:///C:/Users/Gauth/AppData/Local/Temp/_MarkdownMonster_Preview.html -->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--<base href="file:///C:\Users\Gauth\Desktop\markdown\md\">--><base href=".">
+  
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="./_Part_sql_files/font-awesome.min.css" rel="stylesheet">
+
+  <link href="./_Part_sql_files/Theme.css" rel="stylesheet">
+
+  <script src="./_Part_sql_files/jquery.min.js.téléchargement"></script>
+  <link href="./_Part_sql_files/twilight.css" rel="stylesheet">
+  <script src="./_Part_sql_files/highlight.pack.js.téléchargement"></script>
+  <script src="./_Part_sql_files/preview.js.téléchargement" id="PreviewScript"></script>
+  
+</head>
+<body>
+<div id="MainContent">
+    <!-- Markdown Monster Content -->
+    <h2 id="partie-uml-et-sql">Partie UML et SQL</h2>
+<p>Ici je traite seulement le diagramme de classe SQL du fil rouge.</p>
+<h3 id="avant-propos">Avant propos:</h3>
+<p>Pour réaliser le fil rouge, nous devions faires des shémas UML et un mérise (mérise basée sur le diagramme de classe). Ces étapes étais indispensable pour réalisée la base de donnée, la base de donnée fut ensuite modifié et ré adaptée selon les besoins du site.</p>
+<h3 id="le-diagramme-de-cas-dutilisation">Le Diagramme de cas d'utilisation</h3>
+<p>Il consiste à mettre en avant les cas d'utilisations de l'utilisateur sur un site web, il traite en soit les cas échéans (choix secondaire) et les cas primaire d'utilisation d'une applications.</p>
+<h3 id="le-diagramme-de-classe">Le Diagramme de classe</h3>
+<p>Conscient qu'il soit potentiellement faux, je peu au moins expliquée mon raisonnement. J'ai pensée plus aux comportements du <strong>PHP</strong> qu'au <strong>SQL</strong> c'est sans doute une erreur.</p>
+<p>J'ai conssidérée que Personnel, Fournisseur et Client avais plus ou moins les mêmes attributs et fonctions, j'ai donc penssé à l'héritage (fleche violette) et la possibilitée de me projetée sur une éventuelle classe abstraite (d'où l'humain en italique).</p>
+<p>Je pensée également à joindre les classes crud via une interface.</p>
+<p>Je pensée aussi à l'hydratation pour les produits selectionnée par le clients notament pour l'application via le panier cela me semblée logique au départ.</p>
+<p>Pareil pour la visibiltée des attribut, ci3 à du mal avec les élément protégée(protected).</p>
+<p>Mon erreur à étais de pensé plus php que sql aux final.</p>
+<p><img src="./_Part_sql_files/snSql.png" alt="&#39;Diagramme de classe&#39;"></p>
+<h3 id="cotée-sql">Cotée SQL</h3>
+<p>Niveau SQL on a utilisée Wamp (PHPMyAdmin - Apache - PHP7) un serveur open source connue plus pour le développement que pour la production.</p>
+<p>PHPMyAdmin est l'interface faisant tournée les bases de données de WAMP, l'une est mySQL (la plus vielle) et l'autre mariaDB (la plus réçente).</p>
+<p>Apache c'est le serveur de wamp, hormis faire fonctionnée les deux base de donnée, il peu aussi être modifier via des pages .httpaccess permettant par exemple des redirections possible sur des index de sites, une sorte de routage manuel en quelque sorte, par ailleur pour crée un virtualHost il faut définir la redirection via .httpaccess.</p>
+<p>PHP 7 ou antérieur permet entre autre de se servir de php sur nos site, mais aussi de se servir de l'interface de phpMyAdmin, cette dernière etant programmée en ce langage.</p>
+<h3 id="vue-densemble-de-la-table-produits">Vue d'ensemble de la table produits</h3>
+<p><img src="./_Part_sql_files/snSql1.png" alt="&#39;Vue de base de donnée&#39;"></p>
+<h3 id="vue-catégories-utilisée-pour-les-produits">Vue catégories utilisée pour les produits</h3>
+<p><img src="./_Part_sql_files/snSql2.png" alt="&#39;Vue catégories de la base de données"></p>
+<h2 id="commande-sql">Commande SQL</h2>
+<h3 id="crée-une-table">Crée une table</h3>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-string">`produits`</span> (
+  <span class="hljs-string">`PRO_ID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> AUTO_INCREMENT,
+  <span class="hljs-string">`CAT_ID`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_LIBELLE`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_REF`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_DESCRIPTION`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">500</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_PRIX_ACHAT`</span> <span class="hljs-built_in">float</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_PHOTO`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_STOCK_PHYSIQUE`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_STOCK_ALERTE`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  <span class="hljs-string">`PRO_SLUG`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,
+  PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-string">`PRO_ID`</span>),
+  <span class="hljs-keyword">KEY</span> <span class="hljs-string">`FK_cat_id`</span> (<span class="hljs-string">`CAT_ID`</span>)
+) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span>;
+
+</code></pre>
+<p>•   If not exist est facultatif.<br>
+•   Int pour entier, entre parenthèse son occurence souhaitée.<br>
+•   Varchar est pour les caractères, float pour les nombres flottant.<br>
+•   Chaque table à besoin d'un id (identifiant) en AI (auto incrémentation).<br>
+•   Les backtips ne sont pas obligatoire mais peuvent évitée les erreurs avec les mots clé entre autre.<br>
+•   La clé primaire permet d'enregistrée les changements de la table.<br>
+•   FK pour clé de contrainte, cela vérifie la bonne intégritée des données dans le champs concernée.<br>
+•   Engine définit le moteur de la table, par défaut c'est MyISAM, MyISAM ne gère pas les FK ni les transaction.<br>
+•   Le moteur Memory permet d'effectuée d'ancienne recherche fulltext (recherche peu précise).</p>
+<h3 id="inseré-des-données">Inseré des données</h3>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-string">`produits`</span> (<span class="hljs-string">`PRO_ID`</span>, <span class="hljs-string">`CAT_ID`</span>, <span class="hljs-string">`PRO_LIBELLE`</span>, <span class="hljs-string">`PRO_REF`</span>, <span class="hljs-string">`PRO_DESCRIPTION`</span>, <span class="hljs-string">`PRO_PRIX_ACHAT`</span>, <span class="hljs-string">`PRO_PHOTO`</span>, <span class="hljs-string">`PRO_STOCK_PHYSIQUE`</span>, <span class="hljs-string">`PRO_STOCK_ALERTE`</span>, <span class="hljs-string">`PRO_SLUG`</span>) <span class="hljs-keyword">VALUES</span>
+(<span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-string">'Harley Benton'</span>, <span class="hljs-string">'gui000'</span>, <span class="hljs-string">'une description'</span>, <span class="hljs-number">1860</span>, <span class="hljs-string">'png'</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">'Harley_Benton'</span>),
+(<span class="hljs-number">6</span>, <span class="hljs-number">1</span>, <span class="hljs-string">'Delson Sevilla'</span>, <span class="hljs-string">'gui001'</span>, <span class="hljs-string">'une description'</span>, <span class="hljs-number">394.99</span>, <span class="hljs-string">'png'</span>, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-string">'Delson_Sevilla'</span>);
+
+</code></pre>
+<p>Notons qu'il n'est pas nécessaire d'attribuée une valeur à l'id, vue que se dernier est en AI.</p>
+<h3 id="lupdate-des-données">L'update des données</h3>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">Update</span> produits <span class="hljs-keyword">set</span> PRO_LIBELLE = <span class="hljs-string">'New Delson Sevilla'</span>, PRO_REF = <span class="hljs-string">'gui005'</span> <span class="hljs-keyword">where</span> PRO_ID = <span class="hljs-number">6</span>
+
+</code></pre>
+<p>Pour une commande, il n'est pas nécessaire le point virgule.</p>
+<h3 id="delete-et-truncate">delete et truncate</h3>
+<p>delete est particulier, si il n' y as de clause alors il supprime toutes les données.<br>
+delete est différent de truncate, truncate vide les champs tandis que delete supprimes les donnée, le champs et surtout l'id référent.</p>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">truncate</span> produits.PRO_REF <span class="hljs-keyword">where</span> CAT_ID = <span class="hljs-number">2</span> 
+
+</code></pre>
+<h3 id="jointure">Jointure</h3>
+<p>Les Jointures permette de joindre les données de deux tables, cotée PHP cela permet par exemple de joindre les catégories avec les produits.</p>
+<pre><code class="language-sql hljs"><span class="hljs-keyword">select</span> produits.PRO_REF <span class="hljs-keyword">as</span> <span class="hljs-keyword">ref</span>, categorie.CAT_ID <span class="hljs-keyword">as</span> <span class="hljs-keyword">id</span>
+    <span class="hljs-keyword">FROM</span> produits <span class="hljs-keyword">as</span> product
+<span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> categories <span class="hljs-keyword">ON</span> product.PRO_ID = categorie.id
+
+
+</code></pre>
+<p>Ici je demande a voir la ref des produits, ainsi que l'id de catégorie.<br>
+Je donne des Alias à la table produits pour évitée l'ambiguïté.<br>
+INNER n'est pas très appréciée je suis conscient.</p>
+
+    <!-- End Markdown Monster Content -->
+</div>
+
+
+</body></html>
