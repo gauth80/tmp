@@ -153,7 +153,7 @@ C'est cette page qui traite les formulaires cotée produit, elle fonctionne en p
 	
 
 ```
-Globalement c'est un tableau multidimentionnel regrouppant les keys et value destinée à interragir avec les formulaires cotée **Views** et le **Controller**.
+Globalement c'est un tableau multidimentionnel regrouppant les keys et value destinée à interagir avec les formulaires cotée **Views** et le **Controller**.
 
 Chaque tableau est associée à un champ particulier, ce moyen est propre à Ci: la Key field correspond à l'input en fonction de sa valeur **name**. La key Label est destinée aux rapport d'erreur de la cellule (la div regrouppant le champs). Enfin la Key rules définit les règles du champ.
 

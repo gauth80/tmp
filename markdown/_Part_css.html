@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0071)file:///C:/Users/Gauth/AppData/Local/Temp/_MarkdownMonster_Preview.html -->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!--<base href="file:///C:\Users\Gauth\Desktop\markdown\md\">--><base href=".">
+  <!--<base href="file:///C:\Users\Gauth\Desktop\exam\markdown\md\">--><base href=".">
   
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,16 +13,13 @@
   <link href="./_Part_css_files/twilight.css" rel="stylesheet">
   <script src="./_Part_css_files/highlight.pack.js.téléchargement"></script>
   <script src="./_Part_css_files/preview.js.téléchargement" id="PreviewScript"></script>
-  
+  <title>Diapo  |  Partie CSS</title>
 </head>
 <body>
 <div id="MainContent">
     <!-- Markdown Monster Content -->
     <h2 id="partie-css">Partie CSS</h2>
 <h2 id="avant-propos-">Avant propos :</h2>
-<blockquote>
-<p>CSS3 | Bootstrap</p>
-</blockquote>
 <p>Pour le fil rouge j'ai utiliser principalement <strong>Bootstrap</strong>, un frameworks CSS assez connue dans le développement pour sa simplicitée.</p>
 <p>Je me sert également de plusieurs feuilles de styles afin de complétée la mise en page au besoin.</p>
 <p><img src="./_Part_css_files/snCSS.png" alt="Vue d&#39;enssemble des règles CSS"></p>
@@ -93,9 +90,9 @@
 <p>Ici on vois non pas une pseudo-classe mais un pseudo-élément, les pseudo-élément génére un élément ne faisant pas partie du flux / ou du DOM, cette balise fantôme est modifiable via le CSS et possède les règles de ces parents, ainsi ont peu définir une taille de police. Ces élément ont besoin d'un contenue pour existée.</p>
 <h2 id="boostrap">Boostrap</h2>
 <p>Bootstrap c'est un <strong>Framework</strong> Frontent type Composant, en gros se sont des lignes de selecteurs définit avec des règles CSS. Boostrap est composée de deux partie: l'une est faite de CSS, l'autre de Jquery (une librairy CSS et JavaScript).</p>
-<p><strong>Boostrap</strong> peut être utilisée de deux façon: soit directement à l'aide d'un serveur hébergeur aussi appelée CDN. Soit on peu le télécharger et le déposer dans un dossier de notre site, il faudras alors spécifier le path dans l'en-tête HTML pour s'en servir.</p>
+<p><strong>Bootstrap</strong> peut être utilisée de deux façon: soit directement à l'aide d'un serveur hébergeur aussi appelée CDN. Soit on peu le télécharger et le déposer dans un dossier de notre site, il faudras alors spécifier le path dans l'en-tête HTML pour s'en servir.</p>
 <h3 id="la-grille">La Grille</h3>
-<p><strong>Boostrap</strong> possède sa propre grille CSS, sa permet de composée un site de façon harmonieuse et responsive aux possibles, cette grille suporte 5 points fixes (breakpoints) :</p>
+<p><strong>Bootstrap</strong> possède sa propre grille CSS, sa permet de composée un site de façon harmonieuse et responsive aux possibles, cette grille suportes 5 points fixes (breakpoints) :</p>
 <p><em>tableau en px</em></p>
 <table>
 <thead>
@@ -140,7 +137,7 @@
 }
 
 </code></pre>
-<h3 id="se-servir-des-breakpoints-sur-le-dom">Se servir des breakpoints sur le DOM</h3>
+<h3 id="ce-servir-des-breakpoints-sur-le-dom">Ce servir des breakpoints sur le DOM</h3>
 <pre><code class="language-html hljs xml">   <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"form-group col-sm-4"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"#"</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"POST"</span>&gt;</span>
 		<span class="hljs-tag">&lt;<span class="hljs-name">label</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-sm-12 pl-2"</span> <span class="hljs-attr">for</span>=<span class="hljs-string">"newsletter"</span>&gt;</span>Recevez&amp;nbsp;
 		    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"c-custom"</span>&gt;</span>nos ofres exclusives<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
@@ -170,23 +167,23 @@
 </tr>
 <tr>
 <td style="text-align: left;">form-group</td>
-<td style="text-align: center;">composant propre à Boostrap pour la mise en page des formulaires</td>
+<td style="text-align: center;">composant propre à Bootstrap pour la mise en page des formulaires</td>
 </tr>
 <tr>
 <td style="text-align: left;">form-control</td>
-<td style="text-align: center;">composant propre à Boostrap pour la mise en page des input</td>
+<td style="text-align: center;">composant propre à Bootstrap pour la mise en page des input</td>
 </tr>
 <tr>
 <td style="text-align: left;">btn</td>
-<td style="text-align: center;">composant propre à Boostrap pour la mise en page des bouttons</td>
+<td style="text-align: center;">composant propre à Bootstrap pour la mise en page des bouttons</td>
 </tr>
 <tr>
 <td style="text-align: left;">btn-custom</td>
-<td style="text-align: center;">équivaut btn-muted, button neutre et modifiée hors Boostrap</td>
+<td style="text-align: center;">équivaut btn-muted, button neutre et modifiée hors Bootstrap</td>
 </tr>
 <tr>
 <td style="text-align: left;">col-1</td>
-<td style="text-align: center;">ajoute une colone, la grille de Boostrap est composée de 12 colone par rangée</td>
+<td style="text-align: center;">ajoute une colone, la grille de Bootstrap est composée de 12 colone par rangée</td>
 </tr>
 <tr>
 <td style="text-align: left;">col-auto</td>

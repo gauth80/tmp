@@ -27,12 +27,12 @@ Cette commande permet de fetch et pull une version actuelle d'un dépot distant,
 ### Ajoutée un remote
 ```git
 
-$ git remote add <le path du depot distant> <Mettre le nom du remote>
+$ git remote add <Mettre le nom du remote> <le path du depot distant> 
 $ git remote -v
 
 ```
 
-Parfois les dépot non pas de remote préconfigurée, se qui est embétant sans sa impossible d'accédée aux dépôt distant, dans ce contexte il faudras ajoutée ce remote. Notée qu'un dépot peu avoir plusieurs remote, d'où l'importance de nommée ces remotes.
+Parfois les dépot non pas de remote préconfigurée, ce qui est embétant sans sa impossible d'accédée aux dépôt distant, dans ce contexte il faudras ajoutée ce remote. Notée qu'un dépot peu avoir plusieurs remote, d'où l'importance de nommée ces remotes, par défaut le nom du remote est origin.
 
 Remote -v permet de visualisée les remote disponible sur le dépot.
 
