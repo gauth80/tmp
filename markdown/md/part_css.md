@@ -1,6 +1,5 @@
 ﻿## Partie CSS
-## Avant propos : 
-> CSS3 | Bootstrap
+## Avant propos :
 
 Pour le fil rouge j'ai utiliser principalement **Bootstrap**, un frameworks CSS assez connue dans le développement pour sa simplicitée.
 
@@ -92,11 +91,11 @@ section .titre-assistance:before {
  
  Bootstrap c'est un **Framework** Frontent type Composant, en gros se sont des lignes de selecteurs définit avec des règles CSS. Boostrap est composée de deux partie: l'une est faite de CSS, l'autre de Jquery (une librairy CSS et JavaScript).
  
- **Boostrap** peut être utilisée de deux façon: soit directement à l'aide d'un serveur hébergeur aussi appelée CDN. Soit on peu le télécharger et le déposer dans un dossier de notre site, il faudras alors spécifier le path dans l'en-tête HTML pour s'en servir.
+ **Bootstrap** peut être utilisée de deux façon: soit directement à l'aide d'un serveur hébergeur aussi appelée CDN. Soit on peu le télécharger et le déposer dans un dossier de notre site, il faudras alors spécifier le path dans l'en-tête HTML pour s'en servir.
  
  ### La Grille
  
- **Boostrap** possède sa propre grille CSS, sa permet de composée un site de façon harmonieuse et responsive aux possibles, cette grille suporte 5 points fixes (breakpoints) :
+ **Bootstrap** possède sa propre grille CSS, sa permet de composée un site de façon harmonieuse et responsive aux possibles, cette grille suportes 5 points fixes (breakpoints) :
  
  *tableau en px*
  
@@ -117,7 +116,7 @@ section .titre-assistance:before {
  }
  
  ```
- ### Se servir des breakpoints sur le DOM
+ ### Ce servir des breakpoints sur le DOM
  
  ```html
  	<form class="form-group col-sm-4" action="#" method="POST">
@@ -139,11 +138,11 @@ section .titre-assistance:before {
  | Le selecteur  | Son comportement  |
  |:--------------|:-----------------:|
  |      row      |  ajoute une rangée, prend toute la largeur définit par le conteneur|
- |    form-group |  composant propre à Boostrap pour la mise en page des formulaires   |
- |  form-control |  composant propre à Boostrap pour la mise en page des input   |
- |      btn      |  composant propre à Boostrap pour la mise en page des bouttons   |
- |  btn-custom   |  équivaut btn-muted, button neutre et modifiée hors Boostrap   |
- |      col-1    |  ajoute une colone, la grille de Boostrap est composée de 12 colone par rangée | 
+ |    form-group |  composant propre à Bootstrap pour la mise en page des formulaires   |
+ |  form-control |  composant propre à Bootstrap pour la mise en page des input   |
+ |      btn      |  composant propre à Bootstrap pour la mise en page des bouttons   |
+ |  btn-custom   |  équivaut btn-muted, button neutre et modifiée hors Bootstrap   |
+ |      col-1    |  ajoute une colone, la grille de Bootstrap est composée de 12 colone par rangée | 
  |  col-auto     |  s'adapte en fonction des colone déja présent dans la rangée   |
  |  ml-1 |  margin left a 1rem, si il n' as pas assez d'espace, alors cette règle est sans effet   |
  |  d-none |  l'élément obtient un display à none   |

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0071)file:///C:/Users/Gauth/AppData/Local/Temp/_MarkdownMonster_Preview.html -->
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!--<base href="file:///C:\Users\Gauth\Desktop\markdown\md\">--><base href=".">
+  <!--<base href="file:///C:\Users\Gauth\Desktop\exam\markdown\md\">--><base href=".">
   
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,6 +13,7 @@
   <link href="./_Part_html_files/twilight.css" rel="stylesheet">
   <script src="./_Part_html_files/highlight.pack.js.téléchargement"></script>
   <script src="./_Part_html_files/preview.js.téléchargement" id="PreviewScript"></script>
+  <title>Diapo  | Partie HTML</title>
   
 </head>
 <body>
@@ -21,7 +22,7 @@
     <h2 id="partie-html-du-fil-rouge">Partie Html du fil rouge</h2>
 <p>Il y as peu d'exemple car la plupart des snippets sont basiques.</p>
 <h3 id="les-métadonnées">Les métadonnées</h3>
-<p>Les métadonnées sont des données importantes pour un site, ils en existe de toutes sortes selon l'envirronement de développement, sur un envirronement sans auto-chargement c'est à dire sans bundle cela ne comporte qu'une dizaine de meta déployable, le reste est bien souvent déprécier selon Mozilla.</p>
+<p>Les métadonnées sont des données importantes pour un site, ils en existe de toutes sortes selon environnement de développement, sur un environnement sans auto-chargement c'est à dire sans bundle cela ne comporte qu'une dizaine de meta déployable, le reste est bien souvent déprécier selon Mozilla.</p>
 <p>Les attributs des meta, les scripts et link varies aussi selon la techno utilisée, sur <strong>react</strong> par exemple il est possible de choisir si le script soit synchrone ou non ou si il dois être chargée à la fin. En fonction des cas il faut savoir quoi mettre en premier plan car l'ordre à son importance dans l'en-tête.</p>
 <p>En principe se sont les meta que l'ont place en premier, suivit des cnd puis les scripts ou link appartenant aux projets.</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -37,17 +38,17 @@
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 
 </code></pre>
-<p>La première metadonnées est celle de l'encodage. Elle indique aux navigateurs la racine de la langue employée, ici c'est utf-8: la racine de cette encodage regroupe entre autres les langues européennes et ces acçents.</p>
-<p>La seconde meta est optionnelle, elle indique au navigateur comment il dois se comportée lors d'un affichage mobile, initial-scale à 1 pouce, plus l'indice est faible, plus le site s'agrandiras cotée mobile par exemple.</p>
-<p>La troisième meta est aussi optionnelle, cela indique à l'agent utilisateur du navigateur qu'internet explorer est égal à edge. Ainsi ie6 ~ ie8 possèderas alors les mêmes règles <strong>SCSS</strong> qu'edge en théorie.</p>
-<p>La quatrième meta est aussi optionnelle mais fortement consseiller pour le référencement naturel du site (SEO). Il s'agit de la description du site visible par le client lors de sa recherche sur le web.
+<p>La première métadonnée est celle de l'encodage. Elle indique aux navigateurs la racine de la langue employée, ici c'est utf-8: la racine de cette encodage regroupe entre autres les langues européennes et ces accents.</p>
+<p>La seconde meta est optionnelle, elle indique au navigateur comment il dois se comportée lors d'un affichage mobile, initial-scale à 1 pouce, plus l'indice est faible, plus le site s’agrandira cotée mobile par exemple.</p>
+<p>La troisième meta est aussi optionnelle, cela indique à l'agent utilisateur du navigateur qu'internet explorer est égal à edge. Ainsi ie6 ~ ie8 posséderas alors les mêmes règles <strong>SCSS</strong> qu'edge en théorie.</p>
+<p>La quatrième meta est aussi optionnelle mais fortement conseiller pour le référencement naturel du site (SEO). Il s'agit de la description du site visible par le client lors de sa recherche sur le web.
 Google autorise 155 à 255 caractères pour un audit max.</p>
-<p><em>Le premier link ici ne sert qu'a moi, en général je l'éfface, c'est si je n'est pas de connexion aux moins j'ai la grille de Boostrap pour bosser ^^.</em></p>
+<p><em>Le premier link ici ne sert qu'a moi, en général je l’efface, c'est si je n'est pas de connexion aux moins j'ai la grille de Boostrap pour bosser ^^.</em></p>
 <p>Le second link est le seul link de Bootstrap normalement, l'avantage de passer par un cdn c'est que l'on gagne en référencement, pourquoi ? Car les standards de Boostrap respecte les règles établie par W3C.</p>
 <p>Le troisième link, est le link secondaire, pour les mises en page manuelle du site.</p>
 <p>Enfin la balise Title sert à donnée un nom à l'onglet de la page web, bien qu'optionnel elle est fortement recommandée.</p>
 <h3 id="le-header-layouts">Le header (Layouts)</h3>
-<p><em>Notée qu'au moment où j'écris ce diapo je pense sincérement recommençais ce header, fonctionnel mais bien trop volumineux (profondeur du DOM)</em></p>
+<p><em>Notée qu'au moment où j'écris ce diapo je pense sincèrement recommençais ce header, fonctionnel mais bien trop volumineux (profondeur du DOM)</em></p>
 <pre><code class="language-html hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"container root"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"background:url('&lt;?php echo base_url('assets/img/accueil/background_village.png');?&gt;')"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"wrap m-0 p-0"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">header</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"col-12 px-0"</span>&gt;</span>
@@ -74,7 +75,7 @@ Google autorise 155 à 255 caractères pour un audit max.</p>
                                         <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
                                         
 </code></pre>
-<p>Pour réaliser le header, je suis partie dans la logique qu'il me fallais trois navigations responsive aux possibles je suis donc partie sur trois composants hamburger de Boostrap. Les images sont charger par attribut directement depuis les balises car avec l'architecture du MVC il étais plus conplexe de réalisée cela, en gros pour afficher les images cotée <strong>CSS</strong> il aurais fallut que je fasse un style.php et faire de PHP un préprocesseur, se qui est possible avec apache mais plus facile à dire qu' a réaliser, second contexte j'aurais pus passer par <strong>SASS</strong> mais une fois encore je ne maitrise pas assez cette techno pour de telle prouesse.</p>
+<p>Pour réaliser le header, je suis partie dans la logique qu'il me fallait trois navigations responsive aux possibles je suis donc partie sur trois composants hamburger de Boostrap. Les images sont charger par attribut directement depuis les balises car avec l'architecture du MVC il étais plus complexe de réalisée cela, en gros pour afficher les images cotée <strong>CSS</strong> il aurais fallut que je fasse un style.php et faire de PHP un préprocesseur, se qui est possible avec apache mais plus facile à dire qu' a réaliser, second contexte j'aurais pus passer par <strong>SASS</strong> mais une fois encore je nemaîtrisee pas assez cette techno pour de telle prouesse.</p>
 <p>L'ancre formatée par PHP est la seule façon que j'ai trouver pour réaliser une ancre dynamique, c'est à dire qu'en fonction du <strong>Controller</strong> et de sa redirection je peu dirigée le visiteur à l'endroit souhaitée. Cela se décris de cette façon Class/method/arg/ancre, "nom du link", ["class css"].</p>
 <h3 id="snippet-accueil-view">Snippet Accueil (View)</h3>
 <p><em>Code img cassée volontairement pour le markdown, fonctionnement inchangée</em></p>
@@ -93,10 +94,10 @@ Google autorise 155 à 255 caractères pour un audit max.</p>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     
 </code></pre>
-<p>Rare utilisation de <strong>JavaScripts</strong> ici où je souhaite changer d'état une image. onmouseout et onmouseover sont des méthodes propre à <strong>JS</strong>, this fais référence au seul objet associée ici présent l'état entre autre, on lui concatènne (ajoute/aditionne) l'attribut src pour source qui réclâme alors un path. De cette façon en fonction de l'état on obtient les images que l'ont souhaites.</p>
+<p>Rare utilisation de <strong>JavaScripts</strong> ici où je souhaite changer d'état une image. onmouseout et onmouseover sont des méthodes propre à <strong>JS</strong>, this fais référence au seul objet associée ici présent l'état entre autre, on lui concatène (ajoute/additionne) l'attribut src pour source qui réclame alors un path. De cette façon en fonction de l'état on obtient les images que l'ont souhaites.</p>
 <h2 id="hors-fil-rouge">Hors fil rouge</h2>
-<h3 id="une-autre-variétée-inspirée-de-lhtml">Une autre variétée inspirée de l'html</h3>
-<p>Le Pug ou Jade est un <strong>Template</strong> semblable à l'HTML si ce n'est que celui ci peut être dynamique. Contrairement au Javascript, CSS et HTML, le Pug à besoin d'être compilée pour être lisible cotée navigateur de la même manière que l'on compiles du SCSS en CSS. Ce <strong>Template</strong> permet entre d'effectuée des boucles, des mixins (des sortes de Class) et encore d'importée des variables et des comportement en <strong>Javascripts</strong> directement sur l'HTML.</p>
+<h3 id="une-autre-variété-inspirée-de-lhtml">Une autre variété inspirée de l'html</h3>
+<p>Le Pug ou Jade est un <strong>Template</strong> semblable à l'HTML si ce n'est que celui ci peut être dynamique. Contrairement au JavaScript, CSS et HTML, le Pug à besoin d'être compilée pour être lisible cotée navigateur de la même manière que l'on compiles du SCSS en CSS. Ce <strong>Template</strong> permet entre d'effectuée des boucles, des mixins (des sortes de Class) et encore d'importée des variables et des comportement en <strong>Javascripts</strong> directement sur l'HTML.</p>
 <pre><code class="hljs foxpro">
 doctype html
   head
@@ -121,7 +122,7 @@ doctype html
 <p>Ce genre de synthaxe ne laisse pas de place aux erreurs, le moindre espace manquant fait plantée l'ensemble du script.</p>
 <p>L'Soucie de ce langage est qu'il compris par pratiquement aucun Ide actuellement et peu rechercher.
 Sur NodeJs, il faut préçisée le moteur de template en amont pour générée des pages, c'est de cette façon que j'ai découvert le <strong>Pug</strong>.</p>
-<h3 id="php-peu-génrée-aussi-des-balises-html">PHP peu génrée aussi des balises html</h3>
+<h3 id="php-peu-gérée-aussi-des-balises-html">PHP peu gérée aussi des balises html</h3>
 <p>Sur certain Snippet on peu aperçevoir</p>
 <pre><code class="hljs xml"><span class="php"><span class="hljs-meta">&lt;?</span>= form_open_multipart(<span class="hljs-string">'produits/create_produits'</span>, [<span class="hljs-string">"class"</span> =&gt; <span class="hljs-string">"col-sm-12 col-lg-9 mt-2 form-produits"</span>]); <span class="hljs-meta">?&gt;</span></span>
 

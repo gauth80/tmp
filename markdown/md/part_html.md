@@ -3,7 +3,7 @@ Il y as peu d'exemple car la plupart des snippets sont basiques.
 
 ### Les métadonnées
 
-Les métadonnées sont des données importantes pour un site, ils en existe de toutes sortes selon l'envirronement de développement, sur un envirronement sans auto-chargement c'est à dire sans bundle cela ne comporte qu'une dizaine de meta déployable, le reste est bien souvent déprécier selon Mozilla.
+Les métadonnées sont des données importantes pour un site, ils en existe de toutes sortes selon environnement de développement, sur un environnement sans auto-chargement c'est à dire sans bundle cela ne comporte qu'une dizaine de meta déployable, le reste est bien souvent déprécier selon Mozilla.
 
 Les attributs des meta, les scripts et link varies aussi selon la techno utilisée, sur **react** par exemple il est possible de choisir si le script soit synchrone ou non ou si il dois être chargée à la fin. En fonction des cas il faut savoir quoi mettre en premier plan car l'ordre à son importance dans l'en-tête.
 
@@ -23,16 +23,16 @@ En principe se sont les meta que l'ont place en premier, suivit des cnd puis les
 </head>
 
 ```
-La première metadonnées est celle de l'encodage. Elle indique aux navigateurs la racine de la langue employée, ici c'est utf-8: la racine de cette encodage regroupe entre autres les langues européennes et ces acçents.
+La première métadonnée est celle de l'encodage. Elle indique aux navigateurs la racine de la langue employée, ici c'est utf-8: la racine de cette encodage regroupe entre autres les langues européennes et ces accents.
 
-La seconde meta est optionnelle, elle indique au navigateur comment il dois se comportée lors d'un affichage mobile, initial-scale à 1 pouce, plus l'indice est faible, plus le site s'agrandiras cotée mobile par exemple.
+La seconde meta est optionnelle, elle indique au navigateur comment il dois se comportée lors d'un affichage mobile, initial-scale à 1 pouce, plus l'indice est faible, plus le site s’agrandira cotée mobile par exemple.
 
-La troisième meta est aussi optionnelle, cela indique à l'agent utilisateur du navigateur qu'internet explorer est égal à edge. Ainsi ie6 ~ ie8 possèderas alors les mêmes règles **SCSS** qu'edge en théorie.
+La troisième meta est aussi optionnelle, cela indique à l'agent utilisateur du navigateur qu'internet explorer est égal à edge. Ainsi ie6 ~ ie8 posséderas alors les mêmes règles **SCSS** qu'edge en théorie.
 
-La quatrième meta est aussi optionnelle mais fortement consseiller pour le référencement naturel du site (SEO). Il s'agit de la description du site visible par le client lors de sa recherche sur le web.
+La quatrième meta est aussi optionnelle mais fortement conseiller pour le référencement naturel du site (SEO). Il s'agit de la description du site visible par le client lors de sa recherche sur le web.
 Google autorise 155 à 255 caractères pour un audit max.
 
-*Le premier link ici ne sert qu'a moi, en général je l'éfface, c'est si je n'est pas de connexion aux moins j'ai la grille de Boostrap pour bosser ^^.*
+*Le premier link ici ne sert qu'a moi, en général je l’efface, c'est si je n'est pas de connexion aux moins j'ai la grille de Boostrap pour bosser ^^.*
 
 Le second link est le seul link de Bootstrap normalement, l'avantage de passer par un cdn c'est que l'on gagne en référencement, pourquoi ? Car les standards de Boostrap respecte les règles établie par W3C.
 
@@ -41,7 +41,7 @@ Le troisième link, est le link secondaire, pour les mises en page manuelle du s
 Enfin la balise Title sert à donnée un nom à l'onglet de la page web, bien qu'optionnel elle est fortement recommandée.
 
 ### Le header (Layouts)
-*Notée qu'au moment où j'écris ce diapo je pense sincérement recommençais ce header, fonctionnel mais bien trop volumineux (profondeur du DOM)*
+*Notée qu'au moment où j'écris ce diapo je pense sincèrement recommençais ce header, fonctionnel mais bien trop volumineux (profondeur du DOM)*
 
 
 
@@ -73,7 +73,7 @@ Enfin la balise Title sert à donnée un nom à l'onglet de la page web, bien qu
                                         
 ```
 
-Pour réaliser le header, je suis partie dans la logique qu'il me fallais trois navigations responsive aux possibles je suis donc partie sur trois composants hamburger de Boostrap. Les images sont charger par attribut directement depuis les balises car avec l'architecture du MVC il étais plus conplexe de réalisée cela, en gros pour afficher les images cotée **CSS** il aurais fallut que je fasse un style.php et faire de PHP un préprocesseur, se qui est possible avec apache mais plus facile à dire qu' a réaliser, second contexte j'aurais pus passer par **SASS** mais une fois encore je ne maitrise pas assez cette techno pour de telle prouesse.
+Pour réaliser le header, je suis partie dans la logique qu'il me fallait trois navigations responsive aux possibles je suis donc partie sur trois composants hamburger de Boostrap. Les images sont charger par attribut directement depuis les balises car avec l'architecture du MVC il étais plus complexe de réalisée cela, en gros pour afficher les images cotée **CSS** il aurais fallut que je fasse un style.php et faire de PHP un préprocesseur, se qui est possible avec apache mais plus facile à dire qu' a réaliser, second contexte j'aurais pus passer par **SASS** mais une fois encore je nemaîtrisee pas assez cette techno pour de telle prouesse.
 
 L'ancre formatée par PHP est la seule façon que j'ai trouver pour réaliser une ancre dynamique, c'est à dire qu'en fonction du **Controller** et de sa redirection je peu dirigée le visiteur à l'endroit souhaitée. Cela se décris de cette façon Class/method/arg/ancre, "nom du link", ["class css"].
 
@@ -96,12 +96,12 @@ L'ancre formatée par PHP est la seule façon que j'ai trouver pour réaliser un
     </div>
     
 ```
-Rare utilisation de **JavaScripts** ici où je souhaite changer d'état une image. onmouseout et onmouseover sont des méthodes propre à **JS**, this fais référence au seul objet associée ici présent l'état entre autre, on lui concatènne (ajoute/aditionne) l'attribut src pour source qui réclâme alors un path. De cette façon en fonction de l'état on obtient les images que l'ont souhaites.
+Rare utilisation de **JavaScripts** ici où je souhaite changer d'état une image. onmouseout et onmouseover sont des méthodes propre à **JS**, this fais référence au seul objet associée ici présent l'état entre autre, on lui concatène (ajoute/additionne) l'attribut src pour source qui réclame alors un path. De cette façon en fonction de l'état on obtient les images que l'ont souhaites.
 
 
 ## Hors fil rouge
-### Une autre variétée inspirée de l'html
-Le Pug ou Jade est un **Template** semblable à l'HTML si ce n'est que celui ci peut être dynamique. Contrairement au Javascript, CSS et HTML, le Pug à besoin d'être compilée pour être lisible cotée navigateur de la même manière que l'on compiles du SCSS en CSS. Ce **Template** permet entre d'effectuée des boucles, des mixins (des sortes de Class) et encore d'importée des variables et des comportement en **Javascripts** directement sur l'HTML.
+### Une autre variété inspirée de l'html
+Le Pug ou Jade est un **Template** semblable à l'HTML si ce n'est que celui ci peut être dynamique. Contrairement au JavaScript, CSS et HTML, le Pug à besoin d'être compilée pour être lisible cotée navigateur de la même manière que l'on compiles du SCSS en CSS. Ce **Template** permet entre d'effectuée des boucles, des mixins (des sortes de Class) et encore d'importée des variables et des comportement en **Javascripts** directement sur l'HTML.
 
 ```
 
@@ -131,7 +131,7 @@ Ce genre de synthaxe ne laisse pas de place aux erreurs, le moindre espace manqu
 L'Soucie de ce langage est qu'il compris par pratiquement aucun Ide actuellement et peu rechercher.
 Sur NodeJs, il faut préçisée le moteur de template en amont pour générée des pages, c'est de cette façon que j'ai découvert le **Pug**.
 
-### PHP peu génrée aussi des balises html
+### PHP peu gérée aussi des balises html
 
 Sur certain Snippet on peu aperçevoir
 ```
