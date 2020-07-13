@@ -1,0 +1,26 @@
+body {
+    font-size: 14.5px;
+}
+body header {
+    border-bottom:.25rem solid brown;
+}
+
+body header h1:not(span) {
+    color:whitesmoke;
+    font-size:calc(100% + 1.75rem);
+}
+body header h1 span {
+    color:brown;
+    text-shadow:3px 0 2px red;
+}
+nav ul li .nav-brand {
+    font-size:calc(100% + .75rem);
+    font-weight:100;
+    text-decoration:none;
+    text-align:justify;
+    color:black;
+    transition:color 1s;
+}
+nav ul li .nav-brand:hover {
+    color:brown;
+}
