@@ -4,14 +4,40 @@ body {
 body header {
     border-bottom:.25rem solid brown;
 }
-
-body header h1:not(span) {
-    color:whitesmoke;
-    font-size:calc(100% + 1.75rem);
+body header h1, body .col-auto > a:nth-child(1):hover > span:nth-child(1), a:hover {
+    border:none;
+    text-decoration:none;
 }
+body .col-auto > a:nth-child(1):hover > span:nth-child(1) {
+    color: brown;
+    text-shadow: 3px 0px 2px black;
+}
+   
+body header h1:not(span) a  {
+    color:whitesmoke;
+    font-size:calc(100% + .5rem);
+}
+body header h1:not(span) {
+    color: whitesmoke;
+    font-size:calc(100% + 1.5rem);
+}
+body header h1:not(span) a:hover {
+    color:whitesmoke;
+}
+
 body header h1 span {
     color:brown;
     text-shadow:3px 0 2px red;
+    border-bottom:none;
+    transition:all .6s;
+}
+
+.container{
+    width:100%;
+    min-width:100%;
+}
+ul,li{
+    list-style-type:none;
 }
 nav ul li .nav-brand {
     font-size:calc(100% + .75rem);
