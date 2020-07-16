@@ -14,13 +14,20 @@
   <link rel="stylesheet" href="../assets/css/style.css">
   <script src="./_Part_css_files/highlight.pack.js.téléchargement"></script>
   <script src="./_Part_css_files/preview.js.téléchargement" id="PreviewScript"></script>
+  <script src="../assets/js/app.js" defer></script>
   <title>Diapo  |  Partie CSS</title>
 </head>
 <body class="container">
-	<header class="row bg-dark">
-        <h1 class="col-6 offset-1 py-1 my-1"><a href="../home.html" class="nav-brand">Fil&nbsp;<span>rouge</span></a></h1>
-        <h1 class="col-auto offset-1 py-1 my-1"><a href="_Part_sql.html" class="nav-brand">&nbsp;<span>vers SQL..</span></a></h1> 
-    </header>
+	<header class="row wrap-sombre">
+		<h1 class="col-6 offset-1 py-1 my-1 titleH"><a href="../home.html" class="nav-brand titleH">Fil&nbsp;<span>rouge</span></a></h1>
+        <h1 class="col-3 offset-1 py-1 my-1"><a href="_Part_sql.html" class="nav-brand">&nbsp;<span>vers SQL..</span></a></h1> 
+	</header>
+	<div class="row">
+		<button class="col-2 btn-custom">
+			<img class="mn" src="../assets/img/eye_open.png" alt="open">
+		</button>
+	</div>
+
 <div id="MainContent">
     <!-- Markdown Monster Content -->
     <h2 id="partie-css">Partie CSS</h2>
@@ -93,7 +100,7 @@
 <p>L' exemple montre qu'il est possible d'influencée un enfant en fonction de son parent, .card:hover indique que lorsque le curseur passe sur la balise avec le selecteur .card cela change les règles définit sur son enfant. l'enfant c'est face.revers2.</p>
 <h3 id="exemple-iii">Exemple III</h3>
 <p>Ici on vois non pas une pseudo-classe mais un pseudo-élément, les pseudo-élément génére un élément ne faisant pas partie du flux / ou du DOM, cette balise fantôme est modifiable via le CSS et possède les règles de ces parents, ainsi ont peu définir une taille de police. Ces élément ont besoin d'un contenue pour existée.</p>
-<h2 id="boostrap">Boostrap</h2>
+<h2 id="boostrap">Bootstrap</h2>
 <p>Bootstrap c'est un <strong>Framework</strong> Frontent type Composant, en gros se sont des lignes de selecteurs définit avec des règles CSS. Boostrap est composée de deux partie: l'une est faite de CSS, l'autre de Jquery (une librairy CSS et JavaScript).</p>
 <p><strong>Bootstrap</strong> peut être utilisée de deux façon: soit directement à l'aide d'un serveur hébergeur aussi appelée CDN. Soit on peu le télécharger et le déposer dans un dossier de notre site, il faudras alors spécifier le path dans l'en-tête HTML pour s'en servir.</p>
 <h3 id="la-grille">La Grille</h3>
